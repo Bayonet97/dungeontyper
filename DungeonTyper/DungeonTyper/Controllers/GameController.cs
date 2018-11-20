@@ -6,9 +6,10 @@ namespace DungeonTyper.Controllers
     public class GameController : Controller
     {
         GameModel model = new GameModel();
-        // GET: Output
+
         public ActionResult Index()
         {
+            model.Output.Add("Old output loaded.");
             return View(model);
         }
 
@@ -34,11 +35,9 @@ namespace DungeonTyper.Controllers
         public ActionResult HandleOutput(string output)
         {
             // Output from logic layer
-
-            //TO DO: return partial view (Ajax in View) https://stackoverflow.com/questions/26023489/how-do-i-use-a-controller-action-to-refresh-the-model-without-navigation
-            model.NewOutput = output;
-          
-            return View(model);
+            model.NewOutput = output;       
+            //TO DO: return partial view (Ajax in View) https://stackoverflow.com/questions/26023489/how-do-i-use-a-controller-action-to-refresh-the-model-without-navigation          
+            return PartialView("_TextArea", model);
         }
 
     }
