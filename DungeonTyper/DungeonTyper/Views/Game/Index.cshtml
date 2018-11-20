@@ -1,4 +1,4 @@
-﻿@model DungeonTyper.Models.DungeonTyperModel
+﻿@model DungeonTyper.Models.GameModel
 
 @{
     Layout = null;
@@ -8,7 +8,7 @@
 
 <html>
 <head>
-    <link href="~/css/DungeonTyper.css" rel="stylesheet" />
+    <link href="~/css/Game.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     @*src="~/scripts/jquery.unobtrusive-ajax.js*@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
@@ -45,7 +45,7 @@
             formData.set('inputText', inputVar);
 
             $.ajax({
-                url: '/DungeonTyper/HandleInput',
+                url: '/Game/HandleInput',
                 data: formData,
                 processData: false,
                 contentType: false,
@@ -61,7 +61,7 @@
 
         function WriteLine() {
             $.ajax({
-                url: '/DungeonTyper/HandleOutput',
+                url: '/Game/HandleOutput',
                 type: "POST",
                 data: $("form").serialize(),
                 success: function (result) {

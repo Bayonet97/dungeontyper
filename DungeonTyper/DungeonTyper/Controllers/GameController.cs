@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DungeonTyper.Controllers
 {
-    public class DungeonTyperController : Controller
+    public class GameController : Controller
     {
-        DungeonTyperModel model = new DungeonTyperModel();
+        GameModel model = new GameModel();
         // GET: Output
         public ActionResult Index()
         {

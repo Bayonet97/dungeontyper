@@ -9,4 +9,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DungeonTyperDAL\DungeonTyper.DAL.csproj" />
+    <ProjectReference Include="..\DungeonTyperModels\DungeonTyper.Models.csproj" />
+    <ProjectReference Include="..\Logic\DungeonTyper.Logic.csproj" />
+  </ItemGroup>
+
 </Project>

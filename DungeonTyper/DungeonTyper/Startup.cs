@@ -53,7 +53,7 @@ namespace DungeonTyper
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=DungeonTyper}/{action=Index}/{id?}");
+                    template: "{controller=Game}/{action=Index}/{id?}");
             });
         }
     }

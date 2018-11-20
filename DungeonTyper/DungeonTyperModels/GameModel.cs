@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DungeonTyper.Models
 {
-    public class DungeonTyperModel
+    public class GameModel
     {
         public List<string> Output { get; set; } = new List<string>();
 
