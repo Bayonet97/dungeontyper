@@ -8,7 +8,7 @@
 
 <html>
 <head>
-    <link href="~/Content/DungeonTyper.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/DungeonTyper.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     @*src="~/scripts/jquery.unobtrusive-ajax.js*@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
@@ -50,6 +50,9 @@
                 processData: false,
                 contentType: false,
                 type: 'POST',
+                success: function () {
+                    alert("I received valid input and processed it!");
+                }
             });
             WriteLine();
             return false;
@@ -88,7 +91,7 @@
             <input name="input" type="text" id="inputfield" autocomplete="off" style="background-color:black; color:white">
 
         </form>
-        <textarea id="textarea" readonly>@foreach (string line in Model.Output){ @Html.DisplayFor(modelLine => line) @:&nbsp;
+        <textarea id="dungeontextarea" readonly>@foreach (string line in Model.Output){ @Html.DisplayFor(modelLine => line) @:&nbsp;
         }</textarea>
     </div>
 </body>
