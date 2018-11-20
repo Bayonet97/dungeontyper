@@ -1,0 +1,95 @@
+﻿@model DungeonTyper.Models.DungeonTyperModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/DungeonTyper.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width" />
+    @*src="~/scripts/jquery.unobtrusive-ajax.js*@
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        //$.Submit = function () {
+
+        //    var inputVar = ReturnInputText();
+
+        //    alert(inputVar);
+        //        $.ajax({
+        //            type: "POST",
+        //            url: "~/Index.aspx/HandleInput",
+        //            data: JSON.stringify(inputVar), // passing the parameter
+        //            contentType: "application/json; charset=utf-8",
+        //            dataType: "json",
+        //            success: function () {
+        //                alert("Something went right");
+        //            },
+        //            fail: function () {
+        //                alert("Something went wrong");
+        //                // Do something with the return value from.Net method
+        //            }
+        //        });
+        //    };
+
+
+        //// Send input to controller
+        function SubmitInput() {
+
+            var formData = new FormData();
+
+            var inputVar = document.getElementById("inputfield").value;
+
+            formData.set('inputText', inputVar);
+
+            $.ajax({
+                url: '/DungeonTyper/HandleInput',
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+            });
+            WriteLine();
+            return false;
+        }
+        ////
+
+        function WriteLine() {
+            $.ajax({
+                url: '/DungeonTyper/HandleOutput',
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    console.log("Output is" + result);
+                    $("#TextArea").getElementById("dungeontextarea").value += result + "\n";
+                }
+            });
+
+
+        }
+
+    </script>
+
+    <title>DungeonTyper</title>
+</head>
+<body>
+
+
+    <div>
+        @*<form id="inputform" action="javascript:SubmitInput()">
+                <input type="text" id="inputfield" autocomplete="off" style="background-color:black; color:white" />
+            </form>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/jqueryval")*@
+
+        <form id="inputform" action="javascript:SubmitInput()">
+            <input name="input" type="text" id="inputfield" autocomplete="off" style="background-color:black; color:white">
+
+        </form>
+        <textarea id="textarea" readonly>@foreach (string line in Model.Output){ @Html.DisplayFor(modelLine => line) @:&nbsp;
+        }</textarea>
+    </div>
+</body>
+</html>
