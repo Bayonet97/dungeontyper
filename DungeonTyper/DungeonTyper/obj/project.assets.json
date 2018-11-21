@@ -2,21 +2,6 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "AspNet.ScriptManager.jQuery/3.3.1": {
-        "type": "package",
-        "dependencies": {
-          "jQuery": "[3.3.1, 3.3.2)"
-        },
-        "compile": {
-          "lib/net45/AspNet.ScriptManager.jQuery.dll": {}
-        },
-        "runtime": {
-          "lib/net45/AspNet.ScriptManager.jQuery.dll": {}
-        }
-      },
-      "jQuery/3.3.1": {
-        "type": "package"
-      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -4664,39 +4649,6 @@
     }
   },
   "libraries": {
-    "AspNet.ScriptManager.jQuery/3.3.1": {
-      "sha512": "Mux3EJeyAWSRKdvUZVgDqI557hG5uKlBN85RXbcYi8V2hsxjBTceOXcUx2iNOA6KXwopeNEmNuvHBIwJVqS8Vw==",
-      "type": "package",
-      "path": "aspnet.scriptmanager.jquery/3.3.1",
-      "files": [
-        ".signature.p7s",
-        "aspnet.scriptmanager.jquery.3.3.1.nupkg.sha512",
-        "aspnet.scriptmanager.jquery.nuspec",
-        "lib/net40/AspNet.ScriptManager.jQuery.dll",
-        "lib/net45/AspNet.ScriptManager.jQuery.dll"
-      ]
-    },
-    "jQuery/3.3.1": {
-      "sha512": "Emsts1D6E2AgHVBm4cTD2dxoRyWVG+3zK1x8mYbf+k6aAArPTXHR2Ip++o1utlNbmYIzaPFnhGw3YDexp8PjlQ==",
-      "type": "package",
-      "path": "jquery/3.3.1",
-      "files": [
-        ".signature.p7s",
-        "Content/Scripts/jquery-3.3.1-vsdoc.js",
-        "Content/Scripts/jquery-3.3.1.js",
-        "Content/Scripts/jquery-3.3.1.min.js",
-        "Content/Scripts/jquery-3.3.1.min.map",
-        "Content/Scripts/jquery-3.3.1.slim.js",
-        "Content/Scripts/jquery-3.3.1.slim.min.js",
-        "Content/Scripts/jquery-3.3.1.slim.min.map",
-        "Tools/common.ps1",
-        "Tools/install.ps1",
-        "Tools/jquery-3.3.1.intellisense.js",
-        "Tools/uninstall.ps1",
-        "jquery.3.3.1.nupkg.sha512",
-        "jquery.nuspec"
-      ]
-    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "rMDlyePoxggkmN/qgha1+BR2Uy+dOr38xKCQOPfVNKGY07R2nYJGMTKJFE1XFgwD70RYUNazf2fqutjJF18XgQ==",
       "type": "package",
@@ -5530,7 +5482,7 @@
       ]
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
-      "sha512": "ab4+TZw3Sxqrr5TwrwVyABeQkhSxYMJXgG6yZw7T+r6Vz+hcOt+pK79o15ESG7kZvWAK9wRG7emnTIia5O6R1Q==",
+      "sha512": "sa/cztXesLyTgCiYuef0RK2EAImnak0w2wrjCh/YBTvbn4iV2eTy0q3F8CyUkGiaYEyxUKGVTko6+7SMRBL4Gg==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor.design/2.1.2",
       "files": [
@@ -7543,10 +7495,11 @@
       ]
     },
     "Newtonsoft.Json/11.0.2": {
-      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "sha512": "znZGbws7E4BA9jxNZ7FuiIRI3C9hrgatVQSTKhIYZYNOud4M5VfGlTYi6RdYO5sQrebFuF/g9UEV3hOxDMXF6Q==",
       "type": "package",
       "path": "newtonsoft.json/11.0.2",
       "files": [
+        ".signature.p7s",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -12305,7 +12258,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "AspNet.ScriptManager.jQuery >= 3.3.1",
       "DungeonTyper.DAL >= 1.0.0",
       "DungeonTyper.Logic >= 1.0.0",
       "DungeonTyper.Models >= 1.0.0",
@@ -12323,11 +12275,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\DungeonTyper.Web.csproj",
+      "projectUniqueName": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\DungeonTyper.Web.csproj",
       "projectName": "DungeonTyper.Web",
-      "projectPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\DungeonTyper.Web.csproj",
+      "projectPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\DungeonTyper.Web.csproj",
       "packagesPath": "C:\\Users\\rapha\\.nuget\\packages\\",
-      "outputPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\obj\\",
+      "outputPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12346,14 +12298,14 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperDAL\\DungeonTyper.DAL.csproj": {
-              "projectPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperDAL\\DungeonTyper.DAL.csproj"
+            "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperDAL\\DungeonTyper.DAL.csproj": {
+              "projectPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperDAL\\DungeonTyper.DAL.csproj"
             },
-            "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperModels\\DungeonTyper.Models.csproj": {
-              "projectPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperModels\\DungeonTyper.Models.csproj"
+            "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperModels\\DungeonTyper.Models.csproj": {
+              "projectPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperModels\\DungeonTyper.Models.csproj"
             },
-            "D:\\Git\\KillerAppGit\\DungeonTyper\\Logic\\DungeonTyper.Logic.csproj": {
-              "projectPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\Logic\\DungeonTyper.Logic.csproj"
+            "E:\\Git\\KillerAppGit\\DungeonTyper\\Logic\\DungeonTyper.Logic.csproj": {
+              "projectPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\Logic\\DungeonTyper.Logic.csproj"
             }
           }
         }
@@ -12367,10 +12319,6 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
-          "AspNet.ScriptManager.jQuery": {
-            "target": "Package",
-            "version": "[3.3.1, )"
-          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
@@ -12403,17 +12351,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'AspNet.ScriptManager.jQuery 3.3.1' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "AspNet.ScriptManager.jQuery",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    }
-  ]
+  }
 }
