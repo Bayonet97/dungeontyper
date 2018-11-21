@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DungeonTyper.Models;
 
-namespace DungeonTyper.Controllers
+namespace DungeonTyper.Web.Controllers
 {
     public class HomeController : Controller
     {

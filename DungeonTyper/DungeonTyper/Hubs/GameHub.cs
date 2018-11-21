@@ -1,13 +1,18 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
+using DungeonTyper.Logic;
+using DungeonTyper.Logic.Interfaces;
 
-namespace SignalRChat.Hubs
+namespace SignalRChat.Web.Hubs
 {
     public class GameHub : Hub
     {
-        public async Task SendMessage(string user, string message)
+        public async Task ProcessInput(string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            InputHandler inputHandler = new InputHandler();
+            string output = inputHandler.Handle(message);
+
+            await Clients.Caller.SendAsync("WriteOutput", output);
         }
     }
 }

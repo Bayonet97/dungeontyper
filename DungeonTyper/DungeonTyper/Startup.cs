@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SignalRChat.Hubs;
+using SignalRChat.Web.Hubs;
 
-namespace DungeonTyper
+namespace DungeonTyper.Web
 {
     public class Startup
     {

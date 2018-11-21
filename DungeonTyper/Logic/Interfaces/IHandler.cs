@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DungeonTyperLogic
+﻿
+namespace DungeonTyper.Logic.Interfaces
 {
     interface IHandler
     {
-        void Handle();
+        void Handle(string input);
     }
 }

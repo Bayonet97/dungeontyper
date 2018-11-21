@@ -1,7 +1,7 @@
 ﻿using DungeonTyper.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DungeonTyper.Controllers
+namespace DungeonTyper.Web.Controllers
 {
     public class GameController : Controller
     {

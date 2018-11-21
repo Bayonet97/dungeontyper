@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DungeonTyperDAL\DungeonTyper.DAL.csproj" />
+    <ProjectReference Include="..\DungeonTyperModels\DungeonTyper.Models.csproj" />
+  </ItemGroup>
+
 </Project>

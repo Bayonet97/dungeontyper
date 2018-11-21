@@ -1,13 +1,24 @@
-﻿using DungeonTyperLogic;
-using System;
+﻿using System;
+using DungeonTyper.Logic.Interfaces;
 
-namespace Logic
+namespace DungeonTyper.Logic
 {
-    public class InputHandler : IHandler
+    public class InputHandler
     {
-        public void Handle()
+        public string Handle(string input)
         {
-            throw new NotImplementedException();
+            string output;
+
+            if(input == "attack")
+            {
+                output = "You atack!";   
+            }
+            else
+            {
+               output  = "You didn't attack.";
+            }
+
+            return output;
         }
     }
 }

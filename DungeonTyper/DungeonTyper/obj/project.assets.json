@@ -4629,6 +4629,10 @@
       "DungeonTyper.Logic/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "DungeonTyper.DAL": "1.0.0",
+          "DungeonTyper.Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DungeonTyper.Logic.dll": {}
         },
