@@ -1,4 +1,5 @@
-﻿@model DungeonTyper.Models.GameModel
+﻿@page
+@model DungeonTyper.Models.GameModel
 @{
     Layout = null;
 }
@@ -7,70 +8,25 @@
 
 <html>
 <head>
-    <link href="~/css/Game.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width" />
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    <script src="~/js/Game.js"></script>
-    <script>
-        function SubmitInput() {
-
-            var formData = new FormData();
-
-            var inputVar = document.getElementById("inputfield").value;
-
-            formData.set('inputText', inputVar);
-
-            $.ajax({
-                url: '/Game/HandleInput',
-                data: formData,
-                processData: false,
-                contentType: false,
-                type: 'POST',
-                success: function () {
-                    alert("I received valid input and processed it!");
-                    WriteLine();
-                }
-            });
-
-            return false;
-        }
-function WriteLine() {
-    @*//@foreach(string line in Model.Output)
-    //{
-    //    var output = line;
-    //    @: WriteLine(output);
-    //}
-    //var output = @Model.NewOutput;
-    //WriteLine(output);*@
-    $.ajax({
-        url: "Game/HandleOutput",
-        type: "get",
-        success: function () {
-            var output = @Html.Raw(Json.Serialize(Model.NewOutput));
-            console.log("Output is" + output );
-            $("#textareapartial").html(output);
-        }
-    });
-        }
-    </script>
-
+    <link href="~/css/game.css" rel="stylesheet" />
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/game.js"></script>
     <title>DungeonTyper</title>
 </head>
 <body>
     <div>
-        @*<form id="inputform" action="javascript:SubmitInput()">
-                <input type="text" id="inputfield" autocomplete="off" style="background-color:black; color:white" />
-            </form>
-            @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/jqueryval")*@
-
-        <form id="inputform" action="javascript:SubmitInput()">
+        <form onsubmit="javascript:SubmitInput();">
+            <input type="text" id="userInput" value="player" />
+            <br />
             <input name="input" type="text" id="inputfield" autocomplete="off" style="background-color:black; color:white">
-
         </form>
-        <div id="textareapartial">
-            <partial name="_TextArea" />
+
+
+        <input type="button" id="sendButton" value="Send Message" />
+        <div>
+            <textarea id="dungeontextarea" readonly"></textarea>
         </div>
     </div>
+
 </body>
 </html>

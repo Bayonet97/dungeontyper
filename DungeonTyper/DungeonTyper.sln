@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Web", "DungeonTyper\DungeonTyper.Web.csproj", "{5E326C28-8907-4F10-BFF3-85F8B973537E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonTyper.Logic", "Logic\DungeonTyper.Logic.csproj", "{EE3072C1-4B93-413F-A6CF-66955BABB2E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Logic", "Logic\DungeonTyper.Logic.csproj", "{EE3072C1-4B93-413F-A6CF-66955BABB2E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonTyper.DAL", "DungeonTyperDAL\DungeonTyper.DAL.csproj", "{A1EA68D8-FC4B-407D-940C-93B5DD5706AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.DAL", "DungeonTyperDAL\DungeonTyper.DAL.csproj", "{A1EA68D8-FC4B-407D-940C-93B5DD5706AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonTyper.Models", "DungeonTyperModels\DungeonTyper.Models.csproj", "{6F667348-89E2-40AF-9160-E8E9812E48E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Models", "DungeonTyperModels\DungeonTyper.Models.csproj", "{6F667348-89E2-40AF-9160-E8E9812E48E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTest", "SignalRTest\SignalRTest.csproj", "{EC12B15F-EA4B-4E73-9128-201D026E8E6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC12B15F-EA4B-4E73-9128-201D026E8E6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC12B15F-EA4B-4E73-9128-201D026E8E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC12B15F-EA4B-4E73-9128-201D026E8E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC12B15F-EA4B-4E73-9128-201D026E8E6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

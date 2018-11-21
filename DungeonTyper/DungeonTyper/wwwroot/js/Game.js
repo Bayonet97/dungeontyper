@@ -1,30 +1,23 @@
-﻿//$.Submit = function () {
+﻿"use strict";
 
-//    var inputVar = ReturnInputText();
+var connection = new signalR.HubConnectionBuilder().withUrl("/gameHub").build();
 
-//    alert(inputVar);
-//        $.ajax({
-//            type: "POST",
-//            url: "~/Index.aspx/HandleInput",
-//            data: JSON.stringify(inputVar), // passing the parameter
-//            contentType: "application/json; charset=utf-8",
-//            dataType: "json",
-//            success: function () {
-//                alert("Something went right");
-//            },
-//            fail: function () {
-//                alert("Something went wrong");
-//                // Do something with the return value from.Net method
-//            }
-//        });
-//    };
+connection.on("ReceiveMessage", function (user, message) {
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var encodedMsg = user + " says " + msg;
 
+    document.getElementById("dungeontextarea").value += encodedMsg;
+});
 
-//// Send input to controller
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
 
-
-
-
-
-////
-
+function SumbitInput() {
+    var user = document.getElementById("userInput").value;
+    var message = document.getElementById("inputfield").value;
+    connection.invoke("SendMessage", user, message).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+}
