@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 using DungeonTyper.Logic;
-using DungeonTyper.Logic.Interfaces;
+using DungeonTyper.Interfaces;
 
 namespace SignalRChat.Web.Hubs
 {

@@ -17,5 +17,5 @@ function SubmitInput() {
     connection.invoke("ProcessInput", input).catch(function (err) {
         return console.error(err.toString());
     });
-    document.getElementById("inputfield").clear;
+    document.getElementById("inputfield").value = "";
 }

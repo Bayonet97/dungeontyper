@@ -1,9 +1,9 @@
 ﻿using System;
-using DungeonTyper.Logic.Interfaces;
+using DungeonTyper.Interfaces;
 
 namespace DungeonTyper.Logic
 {
-    public class InputHandler
+    public class InputHandler 
     {
         public string Handle(string input)
         {

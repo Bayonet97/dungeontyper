@@ -4626,11 +4626,22 @@
           "bin/placeholder/DungeonTyper.DAL.dll": {}
         }
       },
+      "DungeonTyper.Interfaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "compile": {
+          "bin/placeholder/DungeonTyper.Interfaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DungeonTyper.Interfaces.dll": {}
+        }
+      },
       "DungeonTyper.Logic/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "DungeonTyper.DAL": "1.0.0",
+          "DungeonTyper.Interfaces": "1.0.0",
           "DungeonTyper.Models": "1.0.0"
         },
         "compile": {
@@ -5486,7 +5497,7 @@
       ]
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
-      "sha512": "sa/cztXesLyTgCiYuef0RK2EAImnak0w2wrjCh/YBTvbn4iV2eTy0q3F8CyUkGiaYEyxUKGVTko6+7SMRBL4Gg==",
+      "sha512": "ab4+TZw3Sxqrr5TwrwVyABeQkhSxYMJXgG6yZw7T+r6Vz+hcOt+pK79o15ESG7kZvWAK9wRG7emnTIia5O6R1Q==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor.design/2.1.2",
       "files": [
@@ -7499,11 +7510,10 @@
       ]
     },
     "Newtonsoft.Json/11.0.2": {
-      "sha512": "znZGbws7E4BA9jxNZ7FuiIRI3C9hrgatVQSTKhIYZYNOud4M5VfGlTYi6RdYO5sQrebFuF/g9UEV3hOxDMXF6Q==",
+      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
       "type": "package",
       "path": "newtonsoft.json/11.0.2",
       "files": [
-        ".signature.p7s",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -12249,6 +12259,11 @@
       "path": "../DungeonTyperDAL/DungeonTyper.DAL.csproj",
       "msbuildProject": "../DungeonTyperDAL/DungeonTyper.DAL.csproj"
     },
+    "DungeonTyper.Interfaces/1.0.0": {
+      "type": "project",
+      "path": "../DungeonTyper.Interfaces/DungeonTyper.Interfaces.csproj",
+      "msbuildProject": "../DungeonTyper.Interfaces/DungeonTyper.Interfaces.csproj"
+    },
     "DungeonTyper.Logic/1.0.0": {
       "type": "project",
       "path": "../Logic/DungeonTyper.Logic.csproj",
@@ -12263,6 +12278,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "DungeonTyper.DAL >= 1.0.0",
+      "DungeonTyper.Interfaces >= 1.0.0",
       "DungeonTyper.Logic >= 1.0.0",
       "DungeonTyper.Models >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
@@ -12279,11 +12295,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\DungeonTyper.Web.csproj",
+      "projectUniqueName": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\DungeonTyper.Web.csproj",
       "projectName": "DungeonTyper.Web",
-      "projectPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\DungeonTyper.Web.csproj",
+      "projectPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\DungeonTyper.Web.csproj",
       "packagesPath": "C:\\Users\\rapha\\.nuget\\packages\\",
-      "outputPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\obj\\",
+      "outputPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12302,14 +12318,17 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperDAL\\DungeonTyper.DAL.csproj": {
-              "projectPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperDAL\\DungeonTyper.DAL.csproj"
+            "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper.Interfaces\\DungeonTyper.Interfaces.csproj": {
+              "projectPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyper.Interfaces\\DungeonTyper.Interfaces.csproj"
             },
-            "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperModels\\DungeonTyper.Models.csproj": {
-              "projectPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperModels\\DungeonTyper.Models.csproj"
+            "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperDAL\\DungeonTyper.DAL.csproj": {
+              "projectPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperDAL\\DungeonTyper.DAL.csproj"
             },
-            "E:\\Git\\KillerAppGit\\DungeonTyper\\Logic\\DungeonTyper.Logic.csproj": {
-              "projectPath": "E:\\Git\\KillerAppGit\\DungeonTyper\\Logic\\DungeonTyper.Logic.csproj"
+            "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperModels\\DungeonTyper.Models.csproj": {
+              "projectPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\DungeonTyperModels\\DungeonTyper.Models.csproj"
+            },
+            "D:\\Git\\KillerAppGit\\DungeonTyper\\Logic\\DungeonTyper.Logic.csproj": {
+              "projectPath": "D:\\Git\\KillerAppGit\\DungeonTyper\\Logic\\DungeonTyper.Logic.csproj"
             }
           }
         }

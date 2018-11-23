@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.DAL", "Dungeon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Models", "DungeonTyperModels\DungeonTyper.Models.csproj", "{6F667348-89E2-40AF-9160-E8E9812E48E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonTyper.Interfaces", "DungeonTyper.Interfaces\DungeonTyper.Interfaces.csproj", "{93735EF1-3AC5-486C-879A-DD08FF07B6F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93735EF1-3AC5-486C-879A-DD08FF07B6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93735EF1-3AC5-486C-879A-DD08FF07B6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93735EF1-3AC5-486C-879A-DD08FF07B6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93735EF1-3AC5-486C-879A-DD08FF07B6F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
