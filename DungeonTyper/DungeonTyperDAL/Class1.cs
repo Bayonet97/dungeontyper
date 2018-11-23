@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DungeonTyperDAL
+namespace DungeonTyper.DAL
 {
     public class Class1
     {

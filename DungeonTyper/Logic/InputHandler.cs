@@ -3,9 +3,9 @@ using DungeonTyper.Interfaces;
 
 namespace DungeonTyper.Logic
 {
-    public class InputHandler 
+    public class InputHandler : IReceiver
     {
-        public string Handle(string input)
+        public void HandleInput(string input)
         {
             string output;
 
@@ -17,8 +17,7 @@ namespace DungeonTyper.Logic
             {
                output  = "You didn't attack.";
             }
-
-            return output;
+           // Need a way to access GameHub without circular dependency? Lower layer cant talk with higher layer???
         }
     }
 }
