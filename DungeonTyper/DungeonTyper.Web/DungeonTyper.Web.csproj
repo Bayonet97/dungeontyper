@@ -12,9 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DungeonTyper.DAL\DungeonTyper.DAL.csproj" />
     <ProjectReference Include="..\DungeonTyper.Interfaces\DungeonTyper.Interfaces.csproj" />
-    <ProjectReference Include="..\DungeonTyperModels\DungeonTyper.Models.csproj" />
-    <ProjectReference Include="..\Logic\DungeonTyper.Logic.csproj" />
+    <ProjectReference Include="..\DungeonTyper.Logic\DungeonTyper.Logic.csproj" />
+    <ProjectReference Include="..\DungeonTyper.Models\DungeonTyper.Models.csproj" />
   </ItemGroup>
 
 </Project>

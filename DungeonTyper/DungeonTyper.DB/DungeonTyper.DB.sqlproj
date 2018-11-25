@@ -7,7 +7,7 @@
     <Name>DungeonTyper.DB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{85063c95-ddf5-4512-97d5-352d6ccd6950}</ProjectGuid>
+    <ProjectGuid>{ded97230-ff9d-4999-88a7-e7cb260c11f0}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>

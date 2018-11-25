@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Web", "DungeonTyper\DungeonTyper.Web.csproj", "{5E326C28-8907-4F10-BFF3-85F8B973537E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Logic", "Logic\DungeonTyper.Logic.csproj", "{EE3072C1-4B93-413F-A6CF-66955BABB2E9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.DAL", "DungeonTyperDAL\DungeonTyper.DAL.csproj", "{A1EA68D8-FC4B-407D-940C-93B5DD5706AA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Models", "DungeonTyperModels\DungeonTyper.Models.csproj", "{6F667348-89E2-40AF-9160-E8E9812E48E7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Interfaces", "DungeonTyper.Interfaces\DungeonTyper.Interfaces.csproj", "{93735EF1-3AC5-486C-879A-DD08FF07B6F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonTyper.Factory", "DungeonTyper.Factory\DungeonTyper.Factory.csproj", "{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Factory", "DungeonTyper.Factory\DungeonTyper.Factory.csproj", "{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DungeonTyper.DB", "DungeonTyper.DB\DungeonTyper.DB.sqlproj", "{DED97230-FF9D-4999-88A7-E7CB260C11F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.DAL", "DungeonTyper.DAL\DungeonTyper.DAL.csproj", "{74CA409D-D022-4457-80BF-9D6320A72E28}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Logic", "DungeonTyper.Logic\DungeonTyper.Logic.csproj", "{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Models", "DungeonTyper.Models\DungeonTyper.Models.csproj", "{6CE1A9EA-498F-4F97-A8E5-168B888203A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Web", "DungeonTyper.Web\DungeonTyper.Web.csproj", "{31C934FB-9678-4030-9936-779959ECBD72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,22 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5E326C28-8907-4F10-BFF3-85F8B973537E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E326C28-8907-4F10-BFF3-85F8B973537E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E326C28-8907-4F10-BFF3-85F8B973537E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E326C28-8907-4F10-BFF3-85F8B973537E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE3072C1-4B93-413F-A6CF-66955BABB2E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE3072C1-4B93-413F-A6CF-66955BABB2E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE3072C1-4B93-413F-A6CF-66955BABB2E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE3072C1-4B93-413F-A6CF-66955BABB2E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1EA68D8-FC4B-407D-940C-93B5DD5706AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1EA68D8-FC4B-407D-940C-93B5DD5706AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1EA68D8-FC4B-407D-940C-93B5DD5706AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1EA68D8-FC4B-407D-940C-93B5DD5706AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F667348-89E2-40AF-9160-E8E9812E48E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93735EF1-3AC5-486C-879A-DD08FF07B6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93735EF1-3AC5-486C-879A-DD08FF07B6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93735EF1-3AC5-486C-879A-DD08FF07B6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +31,28 @@ Global
 		{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{74CA409D-D022-4457-80BF-9D6320A72E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74CA409D-D022-4457-80BF-9D6320A72E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74CA409D-D022-4457-80BF-9D6320A72E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74CA409D-D022-4457-80BF-9D6320A72E28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE1A9EA-498F-4F97-A8E5-168B888203A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE1A9EA-498F-4F97-A8E5-168B888203A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE1A9EA-498F-4F97-A8E5-168B888203A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE1A9EA-498F-4F97-A8E5-168B888203A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C934FB-9678-4030-9936-779959ECBD72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C934FB-9678-4030-9936-779959ECBD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C934FB-9678-4030-9936-779959ECBD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C934FB-9678-4030-9936-779959ECBD72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,10 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DungeonTyper.Interfaces\DungeonTyper.Interfaces.csproj" />
-    <ProjectReference Include="..\DungeonTyperDAL\DungeonTyper.DAL.csproj" />
-    <ProjectReference Include="..\DungeonTyperModels\DungeonTyper.Models.csproj" />
-    <ProjectReference Include="..\DungeonTyper\DungeonTyper.Web.csproj" />
-    <ProjectReference Include="..\Logic\DungeonTyper.Logic.csproj" />
   </ItemGroup>
 
 </Project>
