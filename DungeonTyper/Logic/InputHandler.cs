@@ -11,7 +11,7 @@ namespace DungeonTyper.Logic
 
             if(input == "attack")
             {
-                output = "You atack!";   
+                output = "You attack!";   
             }
             else
             {
