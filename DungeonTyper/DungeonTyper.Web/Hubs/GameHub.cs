@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
-using DungeonTyper.Logic;
-using DungeonTyper.Interfaces;
-
 namespace SignalRChat.Web.Hubs
 {
     public class GameHub : Hub
@@ -10,15 +7,23 @@ namespace SignalRChat.Web.Hubs
         //MAIN @TODO: https://www.youtube.com/watch?v=QtDTfn8YxXg. 
         public async Task ProcessInput(string input)
         {
-            IReceiver receiver = new InputHandler();
-            receiver.HandleInput(input);
+            string output;
 
-            await Clients.Caller.SendAsync("WriteOutput", receiver);
+            if (input == "attack")
+            {
+                output = "You atack!";
+            }
+            else
+            {
+                output = "You didn't attack.";
+            }
+
+            await Clients.Caller.SendAsync("WriteOutput", output);
         }
 
-        public async Task ProcessOutput(string output)
-        {
-            //TO DO: RECEIVE OUTPUT FROM LOGIC LAYER.
-        }
+        //public async Task ProcessOutput(string output)
+        //{
+        //    //TO DO: RECEIVE OUTPUT FROM LOGIC LAYER.
+        //}
     }
 }
