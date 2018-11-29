@@ -11,7 +11,7 @@ namespace SignalRChat.Web.Hubs
 
             if (input == "attack")
             {
-                output = "You atack!";
+                output = "You attack!";
             }
             else
             {

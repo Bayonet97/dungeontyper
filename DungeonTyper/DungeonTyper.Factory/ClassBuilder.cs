@@ -7,7 +7,7 @@ namespace DungeonTyper.Factory
 {
     public static class ClassBuilder
     {
-       public static IReceiver CreateInputHandler()
+       public static IHandler CreateInputHandler()
         {
             return new InputHandler();
         }
