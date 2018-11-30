@@ -1,15 +1,15 @@
-﻿using System;
-using DungeonTyper.Interfaces;
-using DungeonTyper.Logic;
-using SignalRChat.Web.Hubs;
+﻿//using System;
+//using DungeonTyper.Interfaces;
+//using DungeonTyper.Logic;
 
-namespace DungeonTyper.Factory
-{
-    public static class ClassBuilder
-    {
-       public static IHandler CreateInputHandler()
-        {
-            return new InputHandler();
-        }
-    }
-}
+
+//namespace DungeonTyper.Factory
+//{
+//    public static class ClassBuilder
+//    {
+//       public static IHandler CreateInputHandler()
+//        {
+//            return new InputHandler();
+//        }
+//    }
+//}

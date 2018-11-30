@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SignalRChat.Web.Hubs;
 
 namespace DungeonTyper.Web
 {
@@ -30,7 +29,8 @@ namespace DungeonTyper.Web
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.AddDbContext<FontysConext>(options =>
+      options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -51,11 +51,6 @@ namespace DungeonTyper.Web
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<GameHub>("/gameHub");
-            });
 
             app.UseMvc(routes =>
             {

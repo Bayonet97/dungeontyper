@@ -15,7 +15,11 @@
     <ProjectReference Include="..\DungeonTyper.DAL\DungeonTyper.DAL.csproj" />
     <ProjectReference Include="..\DungeonTyper.Interfaces\DungeonTyper.Interfaces.csproj" />
     <ProjectReference Include="..\DungeonTyper.Logic\DungeonTyper.Logic.csproj" />
-    <ProjectReference Include="..\DungeonTyper.Models\DungeonTyper.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\DataBase\Tables\" />
+    <Folder Include="Data\DataBase\StoredProcedures\" />
   </ItemGroup>
 
 </Project>

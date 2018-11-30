@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.DAL", "Dungeon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Logic", "DungeonTyper.Logic\DungeonTyper.Logic.csproj", "{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Models", "DungeonTyper.Models\DungeonTyper.Models.csproj", "{6CE1A9EA-498F-4F97-A8E5-168B888203A5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Web", "DungeonTyper.Web\DungeonTyper.Web.csproj", "{31C934FB-9678-4030-9936-779959ECBD72}"
 EndProject
 Global
@@ -45,10 +43,6 @@ Global
 		{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CE1A9EA-498F-4F97-A8E5-168B888203A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CE1A9EA-498F-4F97-A8E5-168B888203A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CE1A9EA-498F-4F97-A8E5-168B888203A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CE1A9EA-498F-4F97-A8E5-168B888203A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31C934FB-9678-4030-9936-779959ECBD72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31C934FB-9678-4030-9936-779959ECBD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C934FB-9678-4030-9936-779959ECBD72}.Release|Any CPU.ActiveCfg = Release|Any CPU

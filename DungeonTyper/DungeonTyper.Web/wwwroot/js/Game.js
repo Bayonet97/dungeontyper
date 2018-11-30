@@ -1,21 +1,28 @@
-﻿"use strict";
+﻿function SubmitInput() {
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/gameHub").build();
+    var formData = new FormData();
 
-connection.on("WriteOutput", function (message) {
-    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var inputVar = $('#inputfield')[0].value;
+
+    formData.set('inputText', inputVar);
+
+    document.getElementById("inputfield").value = "";
+
+    $.ajax({
+        url: '/Game/HandleInput',
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (output) {
+            WriteLine(output);
+        }
+    });
+    return false;
+}
+
+function WriteLine(output) {
+    var msg = output.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var outputMsg = msg + "\n"
     document.getElementById("dungeontextarea").value += outputMsg;
-});
-
-connection.start().catch(function (err) {
-    return console.error(err.toString());
-});
-
-function SubmitInput() {
-    var input = document.getElementById("inputfield").value;
-    connection.invoke("ProcessInput", input).catch(function (err) {
-        return console.error(err.toString());
-    });
-    document.getElementById("inputfield").value = "";
 }
