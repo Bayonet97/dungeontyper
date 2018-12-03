@@ -9,7 +9,7 @@
     document.getElementById("inputfield").value = "";
 
     $.ajax({
-        url: '/Game/HandleInput',
+        url: '/Game/Handle',
         data: formData,
         processData: false,
         contentType: false,

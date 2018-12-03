@@ -12,14 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DungeonTyper.DAL\DungeonTyper.DAL.csproj" />
-    <ProjectReference Include="..\DungeonTyper.Interfaces\DungeonTyper.Interfaces.csproj" />
-    <ProjectReference Include="..\DungeonTyper.Logic\DungeonTyper.Logic.csproj" />
+    <Folder Include="Data\DataBase\Tables\" />
+    <Folder Include="Data\DataBase\StoredProcedures\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\DataBase\Tables\" />
-    <Folder Include="Data\DataBase\StoredProcedures\" />
+    <ProjectReference Include="..\DungeonTyper.Factory\DungeonTyper.Factory.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,7 @@
 ﻿using DungeonTyper.Models;
 using Microsoft.AspNetCore.Mvc;
+using DungeonTyper.Factory;
+using DungeonTyper.Logic;
 
 namespace DungeonTyper.Web.Controllers
 {
@@ -14,32 +16,21 @@ namespace DungeonTyper.Web.Controllers
         }
 
         [HttpPost]
-        public string HandleInput()
-        {
-            string output = "";
-
+        public string Handle()
+        {          
             if (Request.Form.Count > 0)
             {
+                IOutputHandler outputHandler = Builder.CreateOutputHandler();
+                IInputHandler inputHandler = Builder.CreateInputHandler(outputHandler);
                 
-                if(Request.Form["inputText"] == "")
-                {
-                    return null;
-                }
                 string input = Request.Form["inputText"];
-                // Enter logic layer
-                if (input == "sit")
-                {
-               
-                    output = "You sit down.";
 
-                }
-                else
-                {
-                    output = "You do something along the lines of " + input + "ing.";
-                }
+                inputHandler.HandleInput(input);
+
+                return outputHandler.GetOutput();
                 
             }
-            return output;
+            return "";
         }
 
     }
