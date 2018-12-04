@@ -15,7 +15,7 @@ namespace DungeonTyper.Logic
 
         public void HandleOutput(string outputToHandle)
         {
-            _output = outputToHandle + "!";
+            _output = outputToHandle;
         }
     }
 }
