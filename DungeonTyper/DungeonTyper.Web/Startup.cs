@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using DungeonTyper.Web.Models;
 
 namespace DungeonTyper.Web
 {
@@ -31,6 +33,8 @@ namespace DungeonTyper.Web
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var connection = @"Server=mssql.fhict.local;Database=dbi397017;User Id=dbi397017;Password=i39701";
+            services.AddDbContext<dbi397017Context>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +46,7 @@ namespace DungeonTyper.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(" / Home/Error");
             }
 
             app.UseStaticFiles();

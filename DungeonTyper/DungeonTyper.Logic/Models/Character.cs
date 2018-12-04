@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DungeonTyper.Logic
+namespace DungeonTyper.Logic.Models
 {
     class Character
     {
