@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DungeonTyper.DAL\DungeonTyper.DAL.csproj" />
-    <ProjectReference Include="..\DungeonTyper.DB\DungeonTyper.DB.sqlproj" />
     <ProjectReference Include="..\DungeonTyper.Logic\DungeonTyper.Logic.csproj" />
   </ItemGroup>
 

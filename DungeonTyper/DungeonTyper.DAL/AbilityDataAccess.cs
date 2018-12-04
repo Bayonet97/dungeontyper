@@ -9,18 +9,18 @@ using System.Linq;
 
 namespace DungeonTyper.DAL
 {
-    public static class AbilityDataAccess
+    public class AbilityDataAccess : IAbilityDataAccess
     {
-        public static string GetConnectionString(string connectionName = "GameDB")
+        public string GetConnectionString(string connectionName = "GameDB")
         {
             return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
         }
 
-        public static List<T> LoadData<T>(string sql)
+        public object LoadData(string sql)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
-                return cnn.Query<T>(sql).ToList();
+                return cnn.Query(sql);
             }
         }
     }

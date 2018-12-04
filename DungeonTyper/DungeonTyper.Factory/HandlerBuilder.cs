@@ -3,7 +3,7 @@ using DungeonTyper.Logic;
 
 namespace DungeonTyper.Factory
 {
-    public static class Builder
+    public static class HandlerBuilder
     {
         public static IInputHandler CreateInputHandler(IOutputHandler outputHandler)
         {

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DungeonTyper.Factory\DungeonTyper.Factory.csproj" />
+    <ProjectReference Include="..\DungeonTyper.Factory\DungeonTyper.HandlerFactory.csproj" />
   </ItemGroup>
 
 </Project>

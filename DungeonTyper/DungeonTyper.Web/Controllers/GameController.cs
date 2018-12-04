@@ -20,8 +20,10 @@ namespace DungeonTyper.Web.Controllers
         {          
             if (Request.Form.Count > 0)
             {
-                IOutputHandler outputHandler = Builder.CreateOutputHandler();
-                IInputHandler inputHandler = Builder.CreateInputHandler(outputHandler);
+                // Factory is the top layer. It gives the controller the dependencies it needs. Here the dependencies are turned into object instances in the controller.
+                IOutputHandler outputHandler = HandlerBuilder.CreateOutputHandler();
+                // I then proceed to give one instance to the other as a Dependency Inverted reference.
+                IInputHandler inputHandler = HandlerBuilder.CreateInputHandler(outputHandler);
                 
                 string input = Request.Form["inputText"];
 
