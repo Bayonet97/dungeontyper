@@ -11,7 +11,7 @@ namespace DungeonTyper.Web.Controllers
 
         public ActionResult Index()
         {
-            model.Output.Add("Old output loaded.");
+            
             return View(model);
         }
 

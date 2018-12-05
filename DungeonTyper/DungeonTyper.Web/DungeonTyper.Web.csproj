@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DungeonTyper.Factory\DungeonTyper.HandlerFactory.csproj" />
+    <ProjectReference Include="..\DungeonTyper.Logic\DungeonTyper.Logic.csproj" />
   </ItemGroup>
 
 </Project>

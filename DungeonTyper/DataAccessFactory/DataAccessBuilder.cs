@@ -7,9 +7,9 @@ namespace DungeonTyper.DataAccessFactory
 {
     public static class DataAccessBuilder
     {
-        public static IAbilityDataAccess CreateAbilityDataAccess()
-        {
-            return new AbilityDataAccess();
-        }
+        //public static IDataAccess CreateAbilityDataAccess()
+        //{
+        //    //return new AbilityDataAccess();
+        //}
     }
 }

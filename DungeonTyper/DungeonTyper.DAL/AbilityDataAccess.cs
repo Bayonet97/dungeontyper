@@ -9,8 +9,14 @@ using System.Linq;
 
 namespace DungeonTyper.DAL
 {
-    public class AbilityDataAccess : IAbilityDataAccess
+    public class AbilityDataAccess : IDataAccess
     {
+        private string _connectionString;
+
+        public AbilityDataAccess(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
         public string GetConnectionString(string connectionName = "GameDB")
         {
             return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
@@ -18,7 +24,7 @@ namespace DungeonTyper.DAL
 
         public object LoadData(string sql)
         {
-            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(_connectionString))
             {
                 return cnn.Query(sql);
             }

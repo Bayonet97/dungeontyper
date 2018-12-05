@@ -38,7 +38,7 @@ namespace DungeonTyper.Logic
                 }
                 if (_inClassSelection)
                 {
-                    ChooseClass(input);
+                    ChooseCharacterClass(input);
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace DungeonTyper.Logic
 
         }
 
-        public void ChooseClass(string input)
+        public void ChooseCharacterClass(string input)
         {
             if (input == "warrior" || input == "Warrior")
             {
@@ -57,7 +57,7 @@ namespace DungeonTyper.Logic
         }
         private CharacterClassModel GetWarrior()
         {
-            IAbilityDataAccess abilityDataAccess = CreateAbilityDataAccess();
+            IDataAccess abilityDataAccess = /*CreateAbilityDataAccess()*/;
             // Here I want to instantiate the DAL layer and give it the InputHandler as dependency in its constructor.
             string sql = @"select Name
                          from dbo.CharacterClass
