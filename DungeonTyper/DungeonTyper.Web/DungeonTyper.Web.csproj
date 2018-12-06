@@ -12,11 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\DataBase\Tables\" />
-    <Folder Include="Data\DataBase\StoredProcedures\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DungeonTyper.Factory\DungeonTyper.HandlerFactory.csproj" />
     <ProjectReference Include="..\DungeonTyper.Logic\DungeonTyper.Logic.csproj" />
   </ItemGroup>
