@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DungeonTyper.Logic.Models
 {
-    class AbilityModel
+    class Ability
     {
         public int AbilityId { get; set; }
         public string Name { get; set; }

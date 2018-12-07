@@ -55,14 +55,14 @@ namespace DungeonTyper.Logic
                 GetWarrior();
             }
         }
-        private CharacterClassModel GetWarrior()
+        private CharacterClass GetWarrior()
         {
             IDataAccess abilityDataAccess = /*CreateAbilityDataAccess()*/;
             // Here I want to instantiate the DAL layer and give it the InputHandler as dependency in its constructor.
             string sql = @"select Name
                          from dbo.CharacterClass
                          where Name = Warrior;";
-            return abilityDataAccess.LoadData(sql) as CharacterClassModel;
+            return abilityDataAccess.LoadData(sql) as CharacterClass;
         }
     }
 }

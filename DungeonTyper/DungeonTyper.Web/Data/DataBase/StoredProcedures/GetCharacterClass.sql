@@ -1,13 +1,13 @@
 ﻿-- =============================================
--- Author:        <Stef Boelens>
+-- Author:        <Piet>
 -- Create date: <dd/mm/yyyy>
--- Description:    <Buitendoor, Killerapp Semester 2, >
+-- Description:    <DungeonTyper, Killerapp Semester 2, >
 -- =============================================
 
 USE [dbi397017]
 GO
 
-IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_NAME = 'stp_ProcedureName' AND ROUTINE_SCHEMA = 'S2Buitendoor') DROP PROCEDURE [S2Buitendoor].stp_ProcedureName
+IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_NAME = 'stp_ProcedureName' AND ROUTINE_SCHEMA = 'DungeonTyper') DROP PROCEDURE [DungeonTyper].stp_ProcedureName
 GO
 
 SET ANSI_NULLS ON
@@ -15,7 +15,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [S2Buitendoor].[stp_ProcedureName]
+CREATE PROCEDURE [DungeonTyper].[stp_ProcedureName]
     -- Add the parameters for the stored procedure here
     @Param1 varchar(50),
     @Param2 int

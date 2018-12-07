@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DungeonTyper.Logic.Models
+namespace DungeonTyper.Logic.Character
 {
-    class CharacterClassModel
+    class CharacterClass
     {
         public int CharacterClassId { get; set; }
         public string Name { get; set; }
