@@ -4,7 +4,6 @@ namespace DungeonTyper.DAL
 {
     public interface IDataAccess
     {
-        string GetConnectionString(string connectionName = "GameDB");
-        object LoadData(string sql);
+        string GetConnectionString(string connectionName = "GameDB")
     }
 }

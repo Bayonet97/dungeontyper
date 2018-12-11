@@ -3,17 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.HandlerFactory", "DungeonTyper.Factory\DungeonTyper.HandlerFactory.csproj", "{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DungeonTyper.DB", "DungeonTyper.DB\DungeonTyper.DB.sqlproj", "{DED97230-FF9D-4999-88A7-E7CB260C11F0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.DAL", "DungeonTyper.DAL\DungeonTyper.DAL.csproj", "{74CA409D-D022-4457-80BF-9D6320A72E28}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Logic", "DungeonTyper.Logic\DungeonTyper.Logic.csproj", "{595FE3D2-B51A-411A-9A0B-E3F3C407DE6F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonTyper.Web", "DungeonTyper.Web\DungeonTyper.Web.csproj", "{31C934FB-9678-4030-9936-779959ECBD72}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonTyper.DataAccessFactory", "DataAccessFactory\DungeonTyper.DataAccessFactory.csproj", "{0426F039-F36F-4217-B86E-494EF53CF915}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,16 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A03A0FC-A52D-442B-A003-4C3B7C81BC71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DED97230-FF9D-4999-88A7-E7CB260C11F0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{74CA409D-D022-4457-80BF-9D6320A72E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74CA409D-D022-4457-80BF-9D6320A72E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74CA409D-D022-4457-80BF-9D6320A72E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,10 +27,6 @@ Global
 		{31C934FB-9678-4030-9936-779959ECBD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C934FB-9678-4030-9936-779959ECBD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31C934FB-9678-4030-9936-779959ECBD72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0426F039-F36F-4217-B86E-494EF53CF915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0426F039-F36F-4217-B86E-494EF53CF915}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0426F039-F36F-4217-B86E-494EF53CF915}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0426F039-F36F-4217-B86E-494EF53CF915}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

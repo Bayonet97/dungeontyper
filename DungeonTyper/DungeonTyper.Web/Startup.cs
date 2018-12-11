@@ -10,29 +10,37 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DungeonTyper.Web.Models;
 using DungeonTyper.DAL;
+using DungeonTyper.DAL.Utils;
+using DungeonTyper.Logic;
+using DungeonTyper.Factory;
+using DungeonTyper.HandlerFactory;
 
 namespace DungeonTyper.Web
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
      
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IConfiguration>(Configuration); //add Configuration to our services collection
+            services.AddTransient<IDataAccess, CharacterClassDataAccess>(); // register our IDataAccess class (from class library)
+            services.AddSingleton<IFactory<IDataAccess>, DataAccessFactory>();
+            services.AddSingleton<IFactory<IInputHandler, IOutputHandler>, InputHandlerFactory>();
+            services.AddSingleton<IFactory<IOutputHandler>, OutputHandlerFactory>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddTransient(ServiceProvider => new AbilityDataAccess(Configuration.GetConnectionString("FontysDatabase")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

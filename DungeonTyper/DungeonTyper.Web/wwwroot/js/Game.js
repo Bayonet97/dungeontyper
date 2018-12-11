@@ -26,3 +26,7 @@ function WriteLine(output) {
     var outputMsg = msg + "\n"
     document.getElementById("dungeontextarea").value += outputMsg;
 }
+
+function LoadFile() {
+
+}

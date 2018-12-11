@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DungeonTyper.Logic.Models
+namespace DungeonTyper.Logic
 {
     class Ability
     {

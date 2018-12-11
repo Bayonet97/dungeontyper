@@ -1,5 +1,6 @@
 ﻿@page
-@model DungeonTyper.Models.GameModel
+@model List<string>
+
 @{
     Layout = null;
 }
@@ -18,7 +19,7 @@
         <form action="javascript:SubmitInput()">
             <input name="input" type="text" id="inputfield" autocomplete="off" style="background-color:black; color:white">
         </form>
-        
+
         <div>
             <textarea id="dungeontextarea" readonly></textarea>
         </div>

@@ -8,6 +8,6 @@ namespace DungeonTyper.Logic.Character
     {
         public int CharacterClassId { get; set; }
         public string Name { get; set; }
-        public List<AbilityModel> Abilities { get; set; }
+        public List<Ability> Abilities { get; set; }
     }
 }

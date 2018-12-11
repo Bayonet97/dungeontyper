@@ -2,17 +2,30 @@
 using Microsoft.AspNetCore.Mvc;
 using DungeonTyper.Factory;
 using DungeonTyper.Logic;
+using DungeonTyper.DAL.Utils;
+using System.Collections.Generic;
 
 namespace DungeonTyper.Web.Controllers
 {
     public class GameController : Controller
     {
-        GameModel model = new GameModel();
+    
+        private readonly IFactory<IOutputHandler> _outputHandlerFactory;
+        private readonly IFactory<IInputHandler, IOutputHandler> _inputHandlerFactory;
+
+        public GameController(IFactory<IOutputHandler> outputHandlerFactory, IFactory<IInputHandler, IOutputHandler> inputHandlerFactory)
+        {
+            _outputHandlerFactory = outputHandlerFactory;
+            _inputHandlerFactory = inputHandlerFactory;
+        }
 
         public ActionResult Index()
         {
-            
-            return View(model);
+            ILoader loader = new LoadProgress();
+            loader.LoadGame();
+
+            List<string> output = loader.GetLoadedOutput();
+            return View(output);
         }
 
         [HttpPost]
@@ -21,9 +34,9 @@ namespace DungeonTyper.Web.Controllers
             if (Request.Form.Count > 0)
             {
                 // Factory is the top layer. It gives the controller the dependencies it needs. Here the dependencies are turned into object instances in the controller.
-                IOutputHandler outputHandler = HandlerBuilder.CreateOutputHandler();
+                IOutputHandler outputHandler = _outputHandlerFactory.Create();
                 // I then proceed to give one instance to the other as a Dependency Inverted reference.
-                IInputHandler inputHandler = HandlerBuilder.CreateInputHandler(outputHandler);
+                IInputHandler inputHandler = _inputHandlerFactory.Create(outputHandler);
                 
                 string input = Request.Form["inputText"];
 
