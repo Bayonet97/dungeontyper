@@ -58,10 +58,10 @@ namespace DungeonTyper.Logic
         }
         private CharacterClass GetWarrior()
         {
-            IDataAccess abilityDataAccess = _dataAccessBuilder.Create();
-            // Here I want to instantiate the DAL layer and give it the InputHandler as dependency in its constructor.
+            ICharacterClassDataAccess characterClassDataAccess = _dataAccessBuilder.Create() as ICharacterClassDataAccess; 
+            
 
-            return abilityDataAccess.LoadData("Warrior") as CharacterClass;
+            return characterClassDataAccess.GetCharacterClass("Warrior") as CharacterClass;
         }
     }
 }

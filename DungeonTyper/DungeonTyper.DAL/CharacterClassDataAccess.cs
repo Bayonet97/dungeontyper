@@ -40,9 +40,9 @@ namespace DungeonTyper.DAL
                 cmd.Parameters.AddWithValue("@ClassName", characterClass);
             
                 // the usual
-                cmd.ExecuteReader();
+                
+                    return cmd.ExecuteReader();
 
-            
             }
         }
 
