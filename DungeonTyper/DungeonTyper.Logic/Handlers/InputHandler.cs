@@ -35,7 +35,7 @@ namespace DungeonTyper.Logic
                 }
                 if (_inClassSelection)
                 {
-                    ChooseCharacterClass(input);
+                  ChooseCharacterClass(input);
                 }
                 else
                 {
@@ -49,19 +49,23 @@ namespace DungeonTyper.Logic
         {
             if (input == "warrior" || input == "Warrior")
             {
-                GetWarrior();
+                CharacterClass warrior = new CharacterClass();
+                warrior.ClassName = GetWarrior().ToString();
+
+                _outputHandler.HandleOutput("You chose: " + warrior.ClassName);
             }
             else
             {
                 _outputHandler.HandleOutput("That's not a valid class.");
             }
         }
-        private CharacterClass GetWarrior()
+        private object GetWarrior()
         {
-            ICharacterClassDataAccess characterClassDataAccess = _dataAccessBuilder.Create() as ICharacterClassDataAccess; 
-            
+            ICharacterClassDataAccess characterClassDataAccess = _dataAccessBuilder.Create() as ICharacterClassDataAccess;
 
-            return characterClassDataAccess.GetCharacterClass("Warrior") as CharacterClass;
+            CharacterClass warrior = new CharacterClass();
+
+            return characterClassDataAccess.GetCharacterClass("Warrior", warrior);
         }
     }
 }

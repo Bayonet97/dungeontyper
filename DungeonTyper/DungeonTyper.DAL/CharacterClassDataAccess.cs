@@ -17,7 +17,7 @@ namespace DungeonTyper.DAL
         public CharacterClassDataAccess(IConfiguration config)
         {
             _configuration = config;
-            
+
         }
 
         public string GetConnectionString(string connectionName = "GameDB")
@@ -26,22 +26,32 @@ namespace DungeonTyper.DAL
         }
 
         //TO DO: GET THE DATA FROM DATABASE
-        public object GetCharacterClass(string characterClass)
+        public object GetCharacterClass(string characterClass, object characterClassObj)
         {
             var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
 
-            SqlConnection cnn = new SqlConnection(connectionString);
-
-            using (SqlCommand cmd = new SqlCommand("GetCharacterClass", cnn))
+            using (SqlConnection cnn = new SqlConnection(connectionString))
             {
-                // set command type
+
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetByName]", cnn);
+
+                    // set command type
                 cmd.CommandType = CommandType.StoredProcedure;
                 // add one or more parameters
                 cmd.Parameters.AddWithValue("@ClassName", characterClass);
-            
-                // the usual
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    characterClassObj = reader["ClassName"].ToString();
+                }
                 
-                    return cmd.ExecuteReader();
+
+                cnn.Close();
+
+                return characterClassObj;
 
             }
         }
@@ -61,5 +71,5 @@ namespace DungeonTyper.DAL
             return cnn.Query(sql);
         }
     }
-    
+
 }
