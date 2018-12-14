@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
 using DungeonTyper.DAL;
-using DungeonTyper.Logic.Character;
 using DungeonTyper.DAL.Utils;
+using DungeonTyper.Common.Models;
 
-namespace DungeonTyper.Logic
+namespace DungeonTyper.Logic.Handlers
 {
     public class InputHandler : IInputHandler
     {
-        private bool _inClassSelection;
+        Character newCharacter = new Character();
+        private List<ICharacterClass> _allCharacterClasses= new List<ICharacterClass>();
+
 
         private readonly IOutputHandler _outputHandler;
         private readonly IFactory<IDataAccess> _dataAccessBuilder;
@@ -23,8 +25,7 @@ namespace DungeonTyper.Logic
         }
 
         public void HandleInput(string input)
-        {
-            _inClassSelection = true;
+        {           
             if (!string.IsNullOrWhiteSpace(input))
             {
                 if (input == "sit")
@@ -32,10 +33,6 @@ namespace DungeonTyper.Logic
 
                     _outputHandler.HandleOutput("You sit down.");
 
-                }
-                if (_inClassSelection)
-                {
-                  ChooseCharacterClass(input);
                 }
                 else
                 {
@@ -47,25 +44,30 @@ namespace DungeonTyper.Logic
 
         public void ChooseCharacterClass(string input)
         {
-            if (input == "warrior" || input == "Warrior")
-            {
-                CharacterClass warrior = new CharacterClass();
-                warrior.ClassName = GetWarrior().ToString();
+            ICharacterClassDataAccess characterClassDataAccess = _dataAccessBuilder.Create() as ICharacterClassDataAccess;
 
-                _outputHandler.HandleOutput("You chose: " + warrior.ClassName);
+            _allCharacterClasses = characterClassDataAccess.GetAllCharacterClasses();
+            // Check for valid input here
+            if (InputIsValidCharacterClass(input))
+            {
+              
+                newCharacter.CharacterClass = characterClassDataAccess.GetCharacterClass(input);
+
+                _outputHandler.HandleOutput("You chose: " + newCharacter.CharacterClass.ClassName);
             }
             else
             {
                 _outputHandler.HandleOutput("That's not a valid class.");
             }
         }
-        private object GetWarrior()
+
+        private bool InputIsValidCharacterClass(string input)
         {
-            ICharacterClassDataAccess characterClassDataAccess = _dataAccessBuilder.Create() as ICharacterClassDataAccess;
-
-            CharacterClass warrior = new CharacterClass();
-
-            return characterClassDataAccess.GetCharacterClass("Warrior", warrior);
+            foreach (var c in _allCharacterClasses)
+            {
+                if (input == c.ClassName) return true;
+            }
+            return false;
         }
     }
 }

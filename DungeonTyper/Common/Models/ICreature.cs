@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DungeonTyper.Logic
+namespace DungeonTyper.Common.Models
 {
-    interface ICreature
+    public interface ICreature
     {
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DungeonTyper.Common.Models;
 using DungeonTyper.DAL;
 using DungeonTyper.DAL.Utils;
 using Microsoft.Extensions.Configuration;

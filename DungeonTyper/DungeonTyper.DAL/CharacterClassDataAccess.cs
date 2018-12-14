@@ -7,17 +7,21 @@ using Dapper;
 using System.Configuration;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
+using DungeonTyper.Common.Models;
+using DungeonTyper.Common.Factories;
+using DungeonTyper.Common.Utils;
 
 namespace DungeonTyper.DAL
 {
     public class CharacterClassDataAccess : ICharacterClassDataAccess
     {
         private readonly IConfiguration _configuration;
-
+        private readonly IFactory<ICharacterClass> _characterClassFactory = new CharacterClassFactory();
+        private readonly string _connectionString;
         public CharacterClassDataAccess(IConfiguration config)
         {
             _configuration = config;
-
+            _connectionString = _configuration.GetConnectionString("FontysDataBase");
         }
 
         public string GetConnectionString(string connectionName = "GameDB")
@@ -25,51 +29,62 @@ namespace DungeonTyper.DAL
             return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
         }
 
-        //TO DO: GET THE DATA FROM DATABASE
-        public object GetCharacterClass(string characterClass, object characterClassObj)
+        public ICharacterClass GetCharacterClass(string characterClass)
         {
-            var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
+            //var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
 
-            using (SqlConnection cnn = new SqlConnection(connectionString))
+            ICharacterClass chosenClass = _characterClassFactory.Create();
+
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
 
-                cnn.Open();
                 SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetByName]", cnn);
 
-                    // set command type
+                // set command type
                 cmd.CommandType = CommandType.StoredProcedure;
                 // add one or more parameters
                 cmd.Parameters.AddWithValue("@ClassName", characterClass);
 
+                cnn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    characterClassObj = reader["ClassName"].ToString();
+                    chosenClass.ClassName = reader["ClassName"].ToString();
                 }
-                
-
                 cnn.Close();
 
-                return characterClassObj;
-
+                return chosenClass;
             }
         }
 
-        public object LoadData(string sql)
+        public List<ICharacterClass> GetAllCharacterClasses()
         {
-            var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
+            {
+                //var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
 
-            SqlConnection cnn = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("CustOrderHist", cnn);
+                List<ICharacterClass> allCharacterClasses = new List<ICharacterClass>();
 
-            // 2. set the command object so it knows to execute a stored procedure
-            cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlConnection cnn = new SqlConnection(_connectionString))
+                {
 
-            // 3. add parameter to command, which will be passed to the stored procedure
-            cmd.Parameters.Add(new SqlParameter("@CustomerID", sql));
-            return cnn.Query(sql);
+                    SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetAll]", cnn);
+
+                    // set command type
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cnn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        allCharacterClasses.Add(new CharacterClass() { ClassName = reader["ClassName"].ToString() });
+                    }
+                    cnn.Close();
+
+                    return allCharacterClasses;
+                }
+            }
         }
     }
-
 }

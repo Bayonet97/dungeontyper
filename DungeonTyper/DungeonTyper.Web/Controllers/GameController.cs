@@ -1,9 +1,9 @@
 ﻿using DungeonTyper.Models;
 using Microsoft.AspNetCore.Mvc;
-using DungeonTyper.Factory;
 using DungeonTyper.Logic;
 using DungeonTyper.DAL.Utils;
 using System.Collections.Generic;
+using DungeonTyper.Logic.Handlers;
 
 namespace DungeonTyper.Web.Controllers
 {

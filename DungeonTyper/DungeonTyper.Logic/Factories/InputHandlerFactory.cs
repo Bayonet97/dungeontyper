@@ -2,9 +2,9 @@
 using DungeonTyper.DAL;
 using DungeonTyper.DAL.Utils;
 using DungeonTyper.Logic;
-using DungeonTyper.Logic.Creatures;
+using DungeonTyper.Logic.Handlers;
 
-namespace DungeonTyper.Factory
+namespace DungeonTyper.Logic.Factories
 {
     public class InputHandlerFactory : IFactory<IInputHandler, IOutputHandler>
     {

@@ -1,4 +1,4 @@
-﻿namespace DungeonTyper.Logic
+﻿namespace DungeonTyper.Logic.Handlers
 {
     public interface IInputHandler
     {

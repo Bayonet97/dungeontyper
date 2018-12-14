@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DungeonTyper.Logic.Creatures
+namespace DungeonTyper.Logic.Handlers
 {
     public class OutputHandler : IOutputHandler
     {

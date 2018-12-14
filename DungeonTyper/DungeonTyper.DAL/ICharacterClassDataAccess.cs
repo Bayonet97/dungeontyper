@@ -1,9 +1,12 @@
-﻿using System;
+﻿using DungeonTyper.Common.Models;
+using System;
+using System.Collections.Generic;
 
 namespace DungeonTyper.DAL
 {
     public interface ICharacterClassDataAccess : IDataAccess
     {
-        object GetCharacterClass(string characterClass, object characterClassObj);
+        ICharacterClass GetCharacterClass(string characterClass);
+        List<ICharacterClass> GetAllCharacterClasses();
     }
 }
