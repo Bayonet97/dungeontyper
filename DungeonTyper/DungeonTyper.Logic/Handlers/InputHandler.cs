@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
 using DungeonTyper.DAL;
-using DungeonTyper.DAL.Utils;
+using DungeonTyper.Common.Utils;
 using DungeonTyper.Common.Models;
 
 namespace DungeonTyper.Logic.Handlers

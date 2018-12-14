@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using DungeonTyper.Common.Models;
 using DungeonTyper.DAL;
-using DungeonTyper.DAL.Utils;
+using DungeonTyper.Common.Utils;
 using Microsoft.Extensions.Configuration;
 
 namespace DungeonTyper.DAL

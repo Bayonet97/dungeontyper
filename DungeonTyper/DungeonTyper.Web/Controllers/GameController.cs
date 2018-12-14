@@ -1,7 +1,7 @@
 ﻿using DungeonTyper.Models;
 using Microsoft.AspNetCore.Mvc;
 using DungeonTyper.Logic;
-using DungeonTyper.DAL.Utils;
+using DungeonTyper.Common.Utils;
 using System.Collections.Generic;
 using DungeonTyper.Logic.Handlers;
 

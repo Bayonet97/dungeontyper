@@ -10,10 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DungeonTyper.Web.Models;
 using DungeonTyper.DAL;
-using DungeonTyper.DAL.Utils;
 using DungeonTyper.Logic;
 using DungeonTyper.Logic.Factories;
 using DungeonTyper.Logic.Handlers;
+using DungeonTyper.Common.Utils;
 
 namespace DungeonTyper.Web
 {

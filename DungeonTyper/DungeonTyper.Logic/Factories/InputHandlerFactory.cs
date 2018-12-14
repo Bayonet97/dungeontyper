@@ -1,6 +1,6 @@
 ﻿using System;
 using DungeonTyper.DAL;
-using DungeonTyper.DAL.Utils;
+using DungeonTyper.Common.Utils;
 using DungeonTyper.Logic;
 using DungeonTyper.Logic.Handlers;
 
