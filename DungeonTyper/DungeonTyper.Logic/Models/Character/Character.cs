@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DungeonTyper.Common.Models
+namespace DungeonTyper.Logic.Models
 {
     public class Character : ICharacter
     {
@@ -25,11 +25,6 @@ namespace DungeonTyper.Common.Models
         }
 
         public void OpenInventory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetCharacterClass(ICharacterClass characterClass)
         {
             throw new NotImplementedException();
         }

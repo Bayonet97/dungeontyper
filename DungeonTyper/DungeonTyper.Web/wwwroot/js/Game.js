@@ -1,4 +1,8 @@
-﻿function SubmitInput() {
+﻿$(window).load(function () {
+
+})
+
+function SubmitInput() {
 
     var formData = new FormData();
 
@@ -25,8 +29,4 @@ function WriteLine(output) {
     var msg = output.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var outputMsg = msg + "\n"
     document.getElementById("dungeontextarea").value += outputMsg;
-}
-
-function LoadFile() {
-
 }

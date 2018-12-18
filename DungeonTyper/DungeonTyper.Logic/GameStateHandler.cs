@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DungeonTyper.Common
+namespace DungeonTyper.Logic
 {
     public enum GameState
     {

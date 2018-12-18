@@ -8,12 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DungeonTyper.Web.Models;
 using DungeonTyper.DAL;
-using DungeonTyper.Logic;
 using DungeonTyper.Logic.Factories;
 using DungeonTyper.Logic.Handlers;
 using DungeonTyper.Common.Utils;
+using DungeonTyper.Logic;
 
 namespace DungeonTyper.Web
 {
@@ -34,6 +33,8 @@ namespace DungeonTyper.Web
             services.AddSingleton<IFactory<IDataAccess>, DataAccessFactory>();
             services.AddSingleton<IFactory<IInputHandler, IOutputHandler>, InputHandlerFactory>();
             services.AddSingleton<IFactory<IOutputHandler>, OutputHandlerFactory>();
+            services.AddSingleton<IFactory<IStateHandler>, GameStateHandlerFactory>();
+            services.AddSingleton<IFactory<IProgressLoader>, ProgressLoaderFactory>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

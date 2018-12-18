@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DungeonTyper.Logic
+namespace DungeonTyper.Logic.Models
 {
-    class Ability
+    public class Ability : IAbility
     {
-        public int AbilityId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }

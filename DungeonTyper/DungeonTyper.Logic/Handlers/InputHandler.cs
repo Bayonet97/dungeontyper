@@ -50,8 +50,8 @@ namespace DungeonTyper.Logic.Handlers
             // Check for valid input here
             if (InputIsValidCharacterClass(input))
             {
-              
-                newCharacter.CharacterClass = characterClassDataAccess.GetCharacterClass(input);
+
+                newCharacter.SetCharacterClass(characterClassDataAccess.GetCharacterClass(input));
 
                 _outputHandler.HandleOutput("You chose: " + newCharacter.CharacterClass.ClassName);
             }

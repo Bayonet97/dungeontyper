@@ -6,8 +6,6 @@ namespace DungeonTyper.Logic
 {
     public interface ILoader
     {
-        void LoadGame();
-
-        List<string> GetLoadedOutput();
+        void Load();
     }
 }

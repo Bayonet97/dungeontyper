@@ -6,5 +6,7 @@ namespace DungeonTyper.Common.Models
 {
     abstract class BaseMonster : ICreature
     {
+        public abstract string Name { get; }
+        public abstract int HitPoints { get; }
     }
 }

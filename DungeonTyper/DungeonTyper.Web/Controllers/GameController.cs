@@ -9,23 +9,33 @@ namespace DungeonTyper.Web.Controllers
 {
     public class GameController : Controller
     {
-    
+        // TO DO: SESSION 
         private readonly IFactory<IOutputHandler> _outputHandlerFactory;
         private readonly IFactory<IInputHandler, IOutputHandler> _inputHandlerFactory;
-
-        public GameController(IFactory<IOutputHandler> outputHandlerFactory, IFactory<IInputHandler, IOutputHandler> inputHandlerFactory)
+        private readonly IFactory<IProgressLoader> _progressLoaderFactory;
+        private readonly IFactory<IStateHandler> _gameStateHandlerFactory;
+        public GameController(IFactory<IOutputHandler> outputHandlerFactory, IFactory<IInputHandler, IOutputHandler> inputHandlerFactory, IFactory<IProgressLoader> progressLoaderFactory, IFactory<IStateHandler> gameStateHandlerFactory)
         {
             _outputHandlerFactory = outputHandlerFactory;
             _inputHandlerFactory = inputHandlerFactory;
+            _progressLoaderFactory = progressLoaderFactory;
+            _gameStateHandlerFactory = gameStateHandlerFactory;
         }
 
         public ActionResult Index()
         {
-            ILoader loader = new LoadProgress();
-            loader.LoadGame();
+           
+            return View();
+        }
+
+        public string LoadGame()
+        {
+            IProgressLoader loader = _progressLoaderFactory.Create();
+            loader.Load();
 
             List<string> output = loader.GetLoadedOutput();
-            return View(output);
+
+            return "";
         }
 
         [HttpPost]

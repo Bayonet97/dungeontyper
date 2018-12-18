@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DungeonTyper.Logic.Handlers
+namespace DungeonTyper.Logic.Models
 {
-    class EventHandler
+    public interface IItem
     {
     }
 }

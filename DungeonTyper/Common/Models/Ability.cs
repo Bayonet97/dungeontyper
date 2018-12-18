@@ -5,9 +5,8 @@ using System.Text;
 
 namespace DungeonTyper.Common.Models
 {
-    public class Ability
+    public class Ability : IAbility
     {
-        public int AbilityId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }
