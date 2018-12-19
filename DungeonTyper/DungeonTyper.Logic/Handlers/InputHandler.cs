@@ -36,7 +36,8 @@ namespace DungeonTyper.Logic.Handlers
                 }
                 else
                 {
-                    _outputHandler.HandleOutput("You do something along the lines of " + input + "ing.");
+                    ChooseCharacterClass(input);
+                //   _outputHandler.HandleOutput("You do something along the lines of " + input + "ing.");
                 }
             }
 

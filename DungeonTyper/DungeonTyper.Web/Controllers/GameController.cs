@@ -9,7 +9,7 @@ namespace DungeonTyper.Web.Controllers
 {
     public class GameController : Controller
     {
-        // TO DO: SESSION 
+        // TO DO: SESSION MANAGEMENT
         private readonly IFactory<IOutputHandler> _outputHandlerFactory;
         private readonly IFactory<IInputHandler, IOutputHandler> _inputHandlerFactory;
         private readonly IFactory<IProgressLoader> _progressLoaderFactory;
@@ -24,7 +24,6 @@ namespace DungeonTyper.Web.Controllers
 
         public ActionResult Index()
         {
-           
             return View();
         }
 

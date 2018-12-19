@@ -5,6 +5,7 @@ GO
 DELETE FROM [DungeonTyper].[Character]
 DELETE FROM [DungeonTyper].[CharacterClass]
 DELETE FROM [DungeonTyper].[Ability]
+DELETE FROM [DungeonTyper].[CharacterClass_Abilities]
 
 --INSERT
 --	CHARACTERCLASS

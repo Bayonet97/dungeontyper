@@ -1,14 +1,16 @@
-﻿namespace DungeonTyper.Common.Models
+﻿using System.Collections.Generic;
+
+namespace DungeonTyper.Common.Models
 {
     public interface ICharacter : ICreature
     {
         ICharacterClass CharacterClass { get; }
-        int Constitution { get; }
-        int Strength { get; }
-        int Dexterity { get; }
-        int Intelligence { get; }
-        void OpenInventory();
-        void EquipItem(IItem item);
-        void Attack(IAbility ability);
+
+        List<IAbility> CharacterAbilities { get; }
+        bool Alive { get; }
+        //int Constitution { get; }
+        //int Strength { get; }
+        //int Dexterity { get; }
+        //int Intelligence { get; }
     }
 }
