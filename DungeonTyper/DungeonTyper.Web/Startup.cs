@@ -30,7 +30,7 @@ namespace DungeonTyper.Web
         {
             services.AddSingleton<IConfiguration>(Configuration); //add Configuration to our services collection
             services.AddTransient<IDataAccess, CharacterClassDataAccess>(); // register our IDataAccess class (from class library)
-            services.AddSingleton<IFactory<IDataAccess>, DataAccessFactory>();
+            services.AddSingleton<IFactory<IDataAccess>, CharacterClassDataAccessFactory>();
             services.AddSingleton<IFactory<IInputHandler, IOutputHandler>, InputHandlerFactory>();
             services.AddSingleton<IFactory<IOutputHandler>, OutputHandlerFactory>();
             services.AddSingleton<IFactory<IStateHandler>, GameStateHandlerFactory>();

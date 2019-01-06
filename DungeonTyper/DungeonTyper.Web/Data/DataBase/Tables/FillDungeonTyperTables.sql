@@ -4,8 +4,8 @@ GO
 --DELETE DATA
 DELETE FROM [DungeonTyper].[Character]
 DELETE FROM [DungeonTyper].[CharacterClass]
-DELETE FROM [DungeonTyper].[Ability]
 DELETE FROM [DungeonTyper].[CharacterClass_Abilities]
+DELETE FROM [DungeonTyper].[Ability]
 
 --INSERT
 --	CHARACTERCLASS
@@ -22,7 +22,7 @@ INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Backstab')
 
 --FOREIGN KEYS
 --	CHARACTER (foreign key CharacterClassId)
-INSERT INTO [DungeonTyper].[Character]([CharacterClassId], [Alive]) VALUES (1, 1)
+INSERT INTO [DungeonTyper].[Character]([CharacterName], [CharacterClassId], [Alive]) VALUES ('TestMan', 1, 1)
 
 -- CHARACTERCLASS_ABILITIES (characterlcassId, AbilityId)
 	-- Warrior

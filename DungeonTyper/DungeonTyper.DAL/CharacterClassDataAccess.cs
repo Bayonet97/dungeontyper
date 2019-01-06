@@ -60,31 +60,28 @@ namespace DungeonTyper.DAL
 
         public List<ICharacterClass> GetAllCharacterClasses()
         {
+            List<ICharacterClass> allCharacterClasses = new List<ICharacterClass>();
+
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
-                //var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
 
-                List<ICharacterClass> allCharacterClasses = new List<ICharacterClass>();
+                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetAll]", cnn);
 
-                using (SqlConnection cnn = new SqlConnection(_connectionString))
+                // set command type
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cnn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-
-                    SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetAll]", cnn);
-
-                    // set command type
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cnn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        allCharacterClasses.Add(new CharacterClass() { ClassName = reader["ClassName"].ToString() });
-                    }
-                    cnn.Close();
-
-                    return allCharacterClasses;
+                    allCharacterClasses.Add(new CharacterClass() { ClassName = reader["ClassName"].ToString() });
                 }
+                cnn.Close();
+
+                return allCharacterClasses;
             }
         }
     }
+}
 }

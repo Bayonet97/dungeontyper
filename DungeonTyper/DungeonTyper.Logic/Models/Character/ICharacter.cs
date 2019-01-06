@@ -10,5 +10,6 @@
         void OpenInventory();
         void EquipItem(IItem item);
         void Attack(IAbility ability);
+        void SetCharacterClass(ICharacterClass characterClass);
     }
 }

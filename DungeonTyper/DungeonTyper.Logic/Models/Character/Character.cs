@@ -28,5 +28,10 @@ namespace DungeonTyper.Logic.Models
         {
             throw new NotImplementedException();
         }
+
+        public void SetCharacterClass(ICharacterClass characterClass)
+        {
+            CharacterClass = characterClass;
+        }
     }
 }

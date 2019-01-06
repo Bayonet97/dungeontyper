@@ -2,8 +2,6 @@
 GO
 
 
-IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Ability' AND TABLE_SCHEMA = 'DungeonTyper') DROP TABLE [DungeonTyper].[Ability]
-GO
 IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Item' AND TABLE_SCHEMA = 'DungeonTyper') DROP TABLE [DungeonTyper].[Item]
 GO
 IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'CharacterInventory_Items' AND TABLE_SCHEMA = 'DungeonTyper') DROP TABLE [DungeonTyper].[CharacterInventory_Items]
@@ -17,6 +15,8 @@ GO
 IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Character' AND TABLE_SCHEMA = 'DungeonTyper') DROP TABLE [DungeonTyper].[Character]
 GO
 IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'CharacterClass' AND TABLE_SCHEMA = 'DungeonTyper') DROP TABLE [DungeonTyper].[CharacterClass]
+GO
+IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Ability' AND TABLE_SCHEMA = 'DungeonTyper') DROP TABLE [DungeonTyper].[Ability]
 GO
 
 CREATE TABLE [DungeonTyper].[CharacterClass] (
@@ -41,6 +41,7 @@ CREATE TABLE [DungeonTyper].[Item] (
 
 CREATE TABLE [DungeonTyper].[Character] (
     [Id]                INT    IDENTITY (1, 1) NOT NULL,
+	[CharacterName]		VARCHAR (20)	   NOT NULL,
     [CharacterClassId]  INT    NOT NULL,
 	[Alive]				BIT    NOT NULL,
     CONSTRAINT [PK_Character] PRIMARY KEY CLUSTERED ([Id] ASC),

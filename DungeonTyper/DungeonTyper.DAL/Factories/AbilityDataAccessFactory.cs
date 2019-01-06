@@ -8,16 +8,16 @@ using Microsoft.Extensions.Configuration;
 
 namespace DungeonTyper.DAL
 {
-    public class DataAccessFactory : IFactory<IDataAccess>
+    public class AbilityDataAccessFactory : IFactory<IDataAccess>
     {
         private readonly IConfiguration _config;
-        public DataAccessFactory(IConfiguration config)
+        public AbilityDataAccessFactory(IConfiguration config)
         {
             _config = config;
         }
         public IDataAccess Create()
         {
-           return new CharacterClassDataAccess(_config);
+           return new AbilityDataAccess(_config);
         }
     }
 }
