@@ -20,14 +20,12 @@ CREATE PROCEDURE DungeonTyper.spCharacterClass_GetByName
     @ClassName VARCHAR(20)
 AS
 BEGIN
-    -- SET NOCOUNT ON added to prevent extra result sets from
-    -- interfering with SELECT statements.
     SET NOCOUNT ON;
-
-	SELECT [Id], [ClassName]
-	FROM [DungeonTyper].[CharacterClass]
-	WHERE [ClassName] = @ClassName;
-    -- Insert statements for procedure here
-    
+SELECT 
+	[Id], [ClassName]
+FROM 
+	[DungeonTyper].[CharacterClass]
+WHERE 
+	[ClassName] = @ClassName;    
 END
 GO

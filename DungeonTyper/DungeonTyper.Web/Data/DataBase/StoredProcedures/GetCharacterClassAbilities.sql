@@ -15,27 +15,23 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE DungeonTyper.spCharacterClassAbilities_GetByName
+CREATE PROCEDURE [DungeonTyper].[spCharacterClassAbilities_GetByName]
     -- Add the parameters for the stored procedure here
     @ClassName VARCHAR(20)
 AS
 BEGIN
-    -- SET NOCOUNT ON added to prevent extra result sets from
-    -- interfering with SELECT statements.
     SET NOCOUNT ON;
-
 SELECT 
-   [CharacterClass].[ClassName], [Ability].[AbilityName]
-
+    [CharacterClass].[ClassName], [Ability].[AbilityName]
 FROM 
-	DungeonTyper.Ability AS ability,
-	DungeonTyper.CharacterClass AS characterClass
-INNER JOIN DungeonTyper.CharacterClass_Abilities AS classAbilities
+	[DungeonTyper].[Ability] AS [ability],
+	[DungeonTyper].[CharacterClass] AS [characterClass]
+	INNER JOIN [DungeonTyper].[CharacterClass_Abilities] AS [classAbilities]
 ON 
-	characterClass.Id = classAbilities.CharacterClassId
+	[characterClass].[Id] = [classAbilities].[CharacterClassId]
 WHERE 
-	characterClass.ClassName = @ClassName
-AND ability.Id = classAbilities.AbilityId    
-
+	[characterClass].[ClassName] = @ClassName
+	AND 
+	[ability].[Id]= [classAbilities].[AbilityId]   
 END
 GO

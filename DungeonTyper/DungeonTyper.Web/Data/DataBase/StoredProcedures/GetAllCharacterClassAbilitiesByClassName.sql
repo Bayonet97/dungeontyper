@@ -23,14 +23,14 @@ BEGIN
     -- SET NOCOUNT ON added to prevent extra result sets from
     -- interfering with SELECT statements.
     SET NOCOUNT ON;
-
-SELECT [AbilityName],[AbilityDescription]
+SELECT 
+	[AbilityName],[AbilityDescription]
 FROM 
 	DungeonTyper.Ability AS ability
 WHERE 
 	ability.Id = 
 	(SELECT [AbilityId]
-	FROM DungeonTyper.CharacterClassAbilities AS characterClassAbilities
-	WHERE characterClassAbilities.AbilityName = @ClassName)
+	 FROM DungeonTyper.CharacterClassAbilities AS characterClassAbilities
+	 WHERE characterClassAbilities.AbilityName = @ClassName)
 END
 GO

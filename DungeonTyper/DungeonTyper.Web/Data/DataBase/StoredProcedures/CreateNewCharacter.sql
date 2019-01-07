@@ -20,11 +20,13 @@ CREATE PROCEDURE DungeonTyper.spCharacter_CreateNew
 @ClassName VARCHAR(20)
 AS
 BEGIN
-INSERT INTO [DungeonTyper].[Character] (CharacterName, CharacterClassId, Alive)
-VALUES (@CharacterName,
-(SELECT [CharacterClass].[Id]
-FROM [DungeonTyper].[CharacterClass]
-WHERE CharacterClass.ClassName = @ClassName),
-1)
+INSERT INTO 
+	[DungeonTyper].[Character] ([CharacterName], [CharacterClassId], [Alive])
+VALUES 
+	(@CharacterName,
+	(SELECT [CharacterClass].[Id] 
+	 FROM [DungeonTyper].[CharacterClass]
+	 WHERE [CharacterClass].[ClassName] = @ClassName),
+	1)
 END
 GO

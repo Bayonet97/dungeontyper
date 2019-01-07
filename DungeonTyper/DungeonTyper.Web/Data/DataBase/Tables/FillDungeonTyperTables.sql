@@ -19,6 +19,8 @@ INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Fireball')
 INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Charge')
 INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Flash Heal')
 INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Backstab')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Stomp')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Dodge')
 
 --FOREIGN KEYS
 --	CHARACTER (foreign key CharacterClassId)
