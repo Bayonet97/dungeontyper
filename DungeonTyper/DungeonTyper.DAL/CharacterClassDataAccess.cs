@@ -14,19 +14,13 @@ using DungeonTyper.Common.Utils;
 namespace DungeonTyper.DAL
 {
     public class CharacterClassDataAccess : ICharacterClassDataAccess
-    {
-        private readonly IConfiguration _configuration;
+    { 
         private readonly IFactory<ICharacterClass> _characterClassFactory = new CharacterClassFactory();
-        private readonly string _connectionString;
-        public CharacterClassDataAccess(IConfiguration config)
-        {
-            _configuration = config;
-            _connectionString = _configuration.GetConnectionString("FontysDataBase");
-        }
+        private readonly IFactory<SqlConnection> _connectionFactory;
 
-        public string GetConnectionString(string connectionName = "GameDB")
+        public CharacterClassDataAccess(IFactory<SqlConnection> connectionFactory)
         {
-            return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+           _connectionFactory = connectionFactory;
         }
 
         public ICharacterClass GetCharacterClass(string characterClass)
@@ -35,7 +29,7 @@ namespace DungeonTyper.DAL
 
             ICharacterClass chosenClass = _characterClassFactory.Create();
 
-            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            using (SqlConnection cnn = _connectionFactory.Create())
             {
 
                 SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetByName]", cnn);
@@ -62,7 +56,7 @@ namespace DungeonTyper.DAL
         {
             List<ICharacterClass> allCharacterClasses = new List<ICharacterClass>();
 
-            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            using (SqlConnection cnn = _connectionFactory.Create())
             {
 
                 SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetAll]", cnn);
@@ -83,5 +77,4 @@ namespace DungeonTyper.DAL
             }
         }
     }
-}
 }

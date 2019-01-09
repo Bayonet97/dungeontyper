@@ -15,8 +15,7 @@ namespace DungeonTyper.Logic.Models
 
         public CharacterClass()
         {
-
-            IDataAccess abilityDataAccess = new AbilityDataAccess();
+      //      IAbilityDataAccess abilityDataAccess = new AbilityDataAccess();
         }
     }
 }

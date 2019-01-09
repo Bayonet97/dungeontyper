@@ -15,13 +15,18 @@ namespace DungeonTyper.Logic.Handlers
         private string _input;
 
         private readonly IOutputHandler _outputHandler;
-        private readonly IFactory<IDataAccess> _dataAccessBuilder;
+        private readonly IAbilityDataAccess _abilityDataAccess;
+        private readonly ICharacterClassDataAccess _characterClassDataAccess;
 
         // Here i construct the inputhandler and give it the outputhandler so that outputhandler does not rely on the inputhandler, but the inputhandler does need the outputhandler interface. This is because the outputhandler is at a higher level.
-        public InputHandler(IOutputHandler outputhandler, IFactory<IDataAccess> dataAccessBuilder)
+        public InputHandler(
+            IOutputHandler outputhandler, 
+            IAbilityDataAccess abilityDataAccess, 
+            ICharacterClassDataAccess characterClassDataAccess)
         {
             _outputHandler = outputhandler;
-            _dataAccessBuilder = dataAccessBuilder;
+            _abilityDataAccess = abilityDataAccess;
+            _characterClassDataAccess = characterClassDataAccess;
         }
 
         public void HandleInput(string input)
@@ -45,21 +50,17 @@ namespace DungeonTyper.Logic.Handlers
         }
         private void DisplayAllAbilities()
         {
-            IAbilityDataAccess abilityDataAccess = _dataAccessBuilder.Create() as IAbilityDataAccess;
+            List<string> allAbilities = _abilityDataAccess.GetAllAbilities_CharacterClass();
 
-            List<string> allAbilities = abilityDataAccess.GetAllAbilities_CharacterClass();
-            // TO DO: TELL OUTPUT WHAT TO SAY.
+            _outputHandler.HandleOutput(allAbilities);
         }
         public void ChooseCharacterClass()
         {
-            ICharacterClassDataAccess characterClassDataAccess = _dataAccessBuilder.Create() as ICharacterClassDataAccess;
-
-            _allCharacterClasses = characterClassDataAccess.GetAllCharacterClasses();
+            _allCharacterClasses = _characterClassDataAccess.GetAllCharacterClasses();
             // Check for valid input here
-            if (InputIsValidCharacterClass(_input))
+            if (InputIsValidCharacterClass())
             {
-
-                newCharacter.SetCharacterClass(characterClassDataAccess.GetCharacterClass(_input));
+               // newCharacter.SetCharacterClass(characterClassDataAccess.GetCharacterClass(_input));
 
                 _outputHandler.HandleOutput("You chose: " + newCharacter.CharacterClass.ClassName);
             }

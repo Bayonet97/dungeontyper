@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DungeonTyper.DAL
 {
-    public interface ICharacterClassDataAccess : IDataAccess
+    public interface ICharacterClassDataAccess
     {
         ICharacterClass GetCharacterClass(string characterClass);
         List<ICharacterClass> GetAllCharacterClasses();

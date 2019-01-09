@@ -10,14 +10,14 @@ namespace DungeonTyper.Web.Controllers
     public class GameController : Controller
     {
         // TO DO: SESSION MANAGEMENT
-        private readonly IFactory<IOutputHandler> _outputHandlerFactory;
-        private readonly IFactory<IInputHandler, IOutputHandler> _inputHandlerFactory;
+        private readonly IOutputHandler _outputHandler;
+        private readonly IInputHandler _inputHandler;
         private readonly IFactory<IProgressLoader> _progressLoaderFactory;
         private readonly IFactory<IStateHandler> _gameStateHandlerFactory;
-        public GameController(IFactory<IOutputHandler> outputHandlerFactory, IFactory<IInputHandler, IOutputHandler> inputHandlerFactory, IFactory<IProgressLoader> progressLoaderFactory, IFactory<IStateHandler> gameStateHandlerFactory)
+        public GameController(IInputHandler inputHandler, IOutputHandler outputHandler, IFactory<IProgressLoader> progressLoaderFactory, IFactory<IStateHandler> gameStateHandlerFactory)
         {
-            _outputHandlerFactory = outputHandlerFactory;
-            _inputHandlerFactory = inputHandlerFactory;
+            _outputHandler= outputHandler;
+            _inputHandler = inputHandler;
             _progressLoaderFactory = progressLoaderFactory;
             _gameStateHandlerFactory = gameStateHandlerFactory;
         }
@@ -42,16 +42,11 @@ namespace DungeonTyper.Web.Controllers
         {          
             if (Request.Form.Count > 0)
             {
-                // Factory is the top layer. It gives the controller the dependencies it needs. Here the dependencies are turned into object instances in the controller.
-                IOutputHandler outputHandler = _outputHandlerFactory.Create();
-                // I then proceed to give one instance to the other as a Dependency Inverted reference.
-                IInputHandler inputHandler = _inputHandlerFactory.Create(outputHandler);
-                
                 string input = Request.Form["inputText"];
 
-                inputHandler.HandleInput(input);
+                _inputHandler.HandleInput(input);
 
-                return outputHandler.GetOutput();
+                return _outputHandler.GetOutput();
                 
             }
             return "";

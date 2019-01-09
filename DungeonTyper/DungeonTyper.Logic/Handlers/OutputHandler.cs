@@ -17,5 +17,10 @@ namespace DungeonTyper.Logic.Handlers
         {
             _output = outputToHandle;
         }
+
+        public void HandleOutput(List<string> outputToHandle)
+        {
+            _output = string.Join(Environment.NewLine, outputToHandle);
+        }
     }
 }

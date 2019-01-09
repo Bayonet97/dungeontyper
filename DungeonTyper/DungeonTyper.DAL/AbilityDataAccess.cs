@@ -15,13 +15,12 @@ namespace DungeonTyper.DAL
     {
 
         private readonly IConfiguration _configuration;
+        private readonly IFactory<SqlConnection> _connectionFactory;
 
-        private readonly string _connectionString;
-
-        public AbilityDataAccess(IConfiguration config)
+        public AbilityDataAccess(IConfiguration config, IFactory<SqlConnection> connectionFactory)
         {
             _configuration = config;
-            _connectionString = _configuration.GetConnectionString("FontysDataBase");
+            _connectionFactory = connectionFactory;
         }
 
         public string GetConnectionString(string connectionName = "GameDB")
@@ -31,7 +30,7 @@ namespace DungeonTyper.DAL
         public List<string> GetAllAbilities_CharacterClass()
         {
             List<string> allAbilities = new List<string>(); 
-            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            using (SqlConnection cnn = _connectionFactory.Create())
             {
 
                 SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClassAbilities_GetAllByClassName]", cnn);
@@ -56,7 +55,7 @@ namespace DungeonTyper.DAL
         {
             List<IAbility> allCharacterClassAbilities = new List<IAbility>();
 
-            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            using (SqlConnection cnn = _connectionFactory.Create())
             {
 
                 SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClassAbilities_GetAllByClassName]", cnn);
@@ -81,7 +80,7 @@ namespace DungeonTyper.DAL
         {
             List<IAbility> allCharacterAbilities = new List<IAbility>();
 
-            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            using (SqlConnection cnn = _connectionFactory.Create())
             {
 
                 SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacter_Abilities_GetAllNameAndDescriptionByCharacterId]", cnn);
@@ -107,7 +106,7 @@ namespace DungeonTyper.DAL
         {
             List<string> allCharacterClassAbilityCount = new List<string>();
 
-            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            using (SqlConnection cnn = _connectionFactory.Create())
             {
 
                 SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_Abilities_GetAllCount]", cnn);

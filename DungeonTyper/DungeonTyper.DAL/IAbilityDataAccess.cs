@@ -3,7 +3,7 @@ using DungeonTyper.Common.Models;
 
 namespace DungeonTyper.DAL
 {
-    public interface IAbilityDataAccess : IDataAccess
+    public interface IAbilityDataAccess 
     {
         List<string> GetAllAbilities_CharacterClass();
         List<string> GetAllCharacterClass_AbilitiesCount();

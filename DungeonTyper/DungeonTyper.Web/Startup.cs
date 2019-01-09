@@ -13,6 +13,8 @@ using DungeonTyper.Logic.Factories;
 using DungeonTyper.Logic.Handlers;
 using DungeonTyper.Common.Utils;
 using DungeonTyper.Logic;
+using DungeonTyper.DAL.Factories;
+using System.Data.SqlClient;
 
 namespace DungeonTyper.Web
 {
@@ -29,10 +31,11 @@ namespace DungeonTyper.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IConfiguration>(Configuration); //add Configuration to our services collection
-            services.AddTransient<IDataAccess, CharacterClassDataAccess>(); // register our IDataAccess class (from class library)
-            services.AddSingleton<IFactory<IDataAccess>, CharacterClassDataAccessFactory>();
-            services.AddSingleton<IFactory<IInputHandler, IOutputHandler>, InputHandlerFactory>();
-            services.AddSingleton<IFactory<IOutputHandler>, OutputHandlerFactory>();
+            services.AddTransient<IAbilityDataAccess, AbilityDataAccess>(); // register our IDataAccess class (from class library)
+            services.AddTransient<ICharacterClassDataAccess, CharacterClassDataAccess>();
+            services.AddTransient<IFactory<SqlConnection>, ConnectionFactory>();
+            services.AddTransient<IInputHandler, InputHandler>();
+            services.AddTransient<IOutputHandler, OutputHandler>();
             services.AddSingleton<IFactory<IStateHandler>, GameStateHandlerFactory>();
             services.AddSingleton<IFactory<IProgressLoader>, ProgressLoaderFactory>();
 
