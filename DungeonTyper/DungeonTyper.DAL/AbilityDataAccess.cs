@@ -4,13 +4,14 @@ using DungeonTyper.Common.Utils;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
 namespace DungeonTyper.DAL
 {
-    public class AbilityDataAccess
+    public class AbilityDataAccess : IAbilityDataAccess
     {
 
         private readonly IConfiguration _configuration;
@@ -23,7 +24,11 @@ namespace DungeonTyper.DAL
             _connectionString = _configuration.GetConnectionString("FontysDataBase");
         }
 
-        public List<string> GetAllAbilitiesWithCharacterClass()
+        public string GetConnectionString(string connectionName = "GameDB")
+        {
+            return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+        }
+        public List<string> GetAllAbilities_CharacterClass()
         {
             List<string> allAbilities = new List<string>(); 
             using (SqlConnection cnn = new SqlConnection(_connectionString))
@@ -47,7 +52,7 @@ namespace DungeonTyper.DAL
             }
         }
 
-        public List<IAbility> GetCharacterClassAbilities(ICharacterClass characterClass)
+        public List<IAbility> GetCharacterClass_Abilities(ICharacterClass characterClass)
         {
             List<IAbility> allCharacterClassAbilities = new List<IAbility>();
 
@@ -72,7 +77,7 @@ namespace DungeonTyper.DAL
             }
         }
 
-        public List<IAbility> GetAllCharacterAbilities(int characterId)
+        public List<IAbility> GetAllCharacter_Abilities(int characterId)
         {
             List<IAbility> allCharacterAbilities = new List<IAbility>();
 
@@ -98,6 +103,31 @@ namespace DungeonTyper.DAL
                 return allCharacterAbilities;
             }
         }
+        public List<string> GetAllCharacterClass_AbilitiesCount()
+        {
+            List<string> allCharacterClassAbilityCount = new List<string>();
+
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+
+                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_Abilities_GetAllCount]", cnn);
+
+                // set command type
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cnn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    allCharacterClassAbilityCount.Add(reader["ClassName"].ToString() + "has " + reader["AbilityCount"].ToString() + " Abilities.");
+                }
+                cnn.Close();
+
+                return allCharacterClassAbilityCount;
+            }
+        }
+
     }
 
 }

@@ -11,8 +11,8 @@ namespace DungeonTyper.Logic.Handlers
     public class InputHandler : IInputHandler
     {
         Character newCharacter = new Character();
-        private List<ICharacterClass> _allCharacterClasses= new List<ICharacterClass>();
-
+        private List<ICharacterClass> _allCharacterClasses = new List<ICharacterClass>();
+        private string _input;
 
         private readonly IOutputHandler _outputHandler;
         private readonly IFactory<IDataAccess> _dataAccessBuilder;
@@ -25,34 +25,41 @@ namespace DungeonTyper.Logic.Handlers
         }
 
         public void HandleInput(string input)
-        {           
-            if (!string.IsNullOrWhiteSpace(input))
+        {
+            _input = input;
+            if (string.IsNullOrWhiteSpace(_input))
             {
-                if (input == "sit")
-                {
-
-                    _outputHandler.HandleOutput("You sit down.");
-
-                }
-                else
-                {
-                    ChooseCharacterClass(input);
-                //   _outputHandler.HandleOutput("You do something along the lines of " + input + "ing.");
-                }
+                return;
             }
 
-        }
+            if (CheckInputCaseInsensitive("Sit"))
+            {
+                _outputHandler.HandleOutput("You sit down.");
+            }
+            else if (CheckInputCaseInsensitive("All Abilities"))
+            {
+                DisplayAllAbilities();
+            }
 
-        public void ChooseCharacterClass(string input)
+
+        }
+        private void DisplayAllAbilities()
+        {
+            IAbilityDataAccess abilityDataAccess = _dataAccessBuilder.Create() as IAbilityDataAccess;
+
+            List<string> allAbilities = abilityDataAccess.GetAllAbilities_CharacterClass();
+            // TO DO: TELL OUTPUT WHAT TO SAY.
+        }
+        public void ChooseCharacterClass()
         {
             ICharacterClassDataAccess characterClassDataAccess = _dataAccessBuilder.Create() as ICharacterClassDataAccess;
 
             _allCharacterClasses = characterClassDataAccess.GetAllCharacterClasses();
             // Check for valid input here
-            if (InputIsValidCharacterClass(input))
+            if (InputIsValidCharacterClass(_input))
             {
 
-                newCharacter.SetCharacterClass(characterClassDataAccess.GetCharacterClass(input));
+                newCharacter.SetCharacterClass(characterClassDataAccess.GetCharacterClass(_input));
 
                 _outputHandler.HandleOutput("You chose: " + newCharacter.CharacterClass.ClassName);
             }
@@ -62,13 +69,18 @@ namespace DungeonTyper.Logic.Handlers
             }
         }
 
-        private bool InputIsValidCharacterClass(string input)
+        private bool InputIsValidCharacterClass()
         {
             foreach (var c in _allCharacterClasses)
             {
-                if (input == c.ClassName) return true;
+                if (_input == c.ClassName) return true;
             }
             return false;
+        }
+
+        private bool CheckInputCaseInsensitive(string expectation)
+        {
+            return String.Equals(_input, expectation, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
