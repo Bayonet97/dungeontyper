@@ -6,6 +6,7 @@ namespace DungeonTyper.Logic.Models
 {
     public class Character : ICharacter
     {
+        public int CharacterId { get; private set; }
         public string Name { get; private set; }
         public int HitPoints { get; private set; }
         public ICharacterClass CharacterClass { get; private set; }
