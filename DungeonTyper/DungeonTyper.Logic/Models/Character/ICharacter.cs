@@ -2,7 +2,6 @@
 {
     public interface ICharacter : ICreature
     {
-        int CharacterId { get; }
         ICharacterClass CharacterClass { get; }
         int Constitution { get; }
         int Strength { get; }

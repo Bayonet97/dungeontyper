@@ -23,30 +23,6 @@ namespace DungeonTyper.DAL
             _connectionString = _configuration.GetConnectionString("FontysDataBase");
         }
 
-        public List<string> GetAllAbilitiesWithCharacterClass()
-        {
-            List<string> allAbilities = new List<string>(); 
-            using (SqlConnection cnn = new SqlConnection(_connectionString))
-            {
-
-                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClassAbilities_GetAllByClassName]", cnn);
-
-                // set command type
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cnn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    allAbilities.Add(reader["AbilityName"].ToString() + (reader["CharacterClassName"] != null ? " Learned by: " + reader["CharacterClassName"].ToString() : ""));
-                }
-                cnn.Close();
-
-                return allAbilities;
-            }
-        }
-
         public List<IAbility> GetCharacterClassAbilities(ICharacterClass characterClass)
         {
             List<IAbility> allCharacterClassAbilities = new List<IAbility>();
@@ -64,7 +40,7 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    allCharacterClassAbilities.Add(new Ability() { AbilityName = reader["AbilityName"].ToString(), AbilityDescription = reader["AbilityDescription"].ToString() });
+                    allCharacterClassAbilities.Add(new Ability() { AbilityName = reader["AbilityName"].ToString(), AbilityDescription = reader["AbilityName"].ToString() });
                 }
                 cnn.Close();
 
@@ -72,30 +48,28 @@ namespace DungeonTyper.DAL
             }
         }
 
-        public List<IAbility> GetAllCharacterAbilities(int characterId)
+        public List<IAbility> GetAllCharacterAbilities(ICharacter character)
         {
             List<IAbility> allCharacterAbilities = new List<IAbility>();
 
             using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
 
-                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacter_Abilities_GetAllNameAndDescriptionByCharacterId]", cnn);
+                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClassAbilities_GetAllByClassName]", cnn);
 
                 // set command type
                 cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@CharacterId", characterId);
 
                 cnn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    allCharacterAbilities.Add(new Ability() { AbilityName = reader["AbilityName"].ToString(), AbilityDescription = reader["AbilityDescription"].ToString() });
+                    allCharacterClassAbilities.Add(new Ability() { AbilityName = reader["AbilityName"].ToString(), AbilityDescription = reader["AbilityName"].ToString() });
                 }
                 cnn.Close();
 
-                return allCharacterAbilities;
+                return allCharacterClassAbilities;
             }
         }
     }
