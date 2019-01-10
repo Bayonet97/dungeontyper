@@ -23,12 +23,9 @@ namespace DungeonTyper.Web.Controllers
         {
             _outputHandler = outputHandler;
             _inputHandler = inputHandler;
-             gameStateHandler.ChangeState(GameState.CharCreation);          //Default to creating a new character in case something goes wrong with loading the game.
             _gameStateHandler = gameStateHandler;
             _characterClassDataAccess = characterClassDataAccess;
             _abilityDataAccess = abilityDataAccess;
-
-            //   HttpContext.Session.SetObject("GameStateHandler", gameStateHandler);
         }
 
         public ActionResult Index()
@@ -46,8 +43,8 @@ namespace DungeonTyper.Web.Controllers
             }
             else // Character creation
             {
-                // Move to separate class when handler classes are done.
-                _gameStateHandler.ChangeState(GameState.CharCreation);
+                HttpContext.Session.SetInt32("GameState", 1);
+
                 _outputHandler.HandleOutput("Create a new character! Which class would you like to play? \rType down one of the following classes: ");
 
                 foreach (ICharacterClass characterClass in _characterClassDataAccess.GetAllCharacterClasses())
@@ -70,6 +67,9 @@ namespace DungeonTyper.Web.Controllers
         {
             if (Request.Form.Count > 0)
             {
+                var gameState = HttpContext.Session.GetInt32("GameState");
+                _gameStateHandler.ChangeState((GameState)gameState); 
+
                 string input = Request.Form["inputText"];
 
                 _inputHandler.HandleInput(input);

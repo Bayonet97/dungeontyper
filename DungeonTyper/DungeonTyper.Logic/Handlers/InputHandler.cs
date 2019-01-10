@@ -6,6 +6,8 @@ using DungeonTyper.DAL;
 using DungeonTyper.Common.Utils;
 using DungeonTyper.Common.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Builder;
 
 namespace DungeonTyper.Logic.Handlers
 {
@@ -15,21 +17,29 @@ namespace DungeonTyper.Logic.Handlers
         private string _input;
 
         private readonly IOutputHandler _outputHandler;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IStateHandler _gameStateHandler;
         private readonly IAbilityDataAccess _abilityDataAccess;
         private readonly ICharacterClassDataAccess _characterClassDataAccess;
         private readonly ICharacterDataAccess _characterDataAccess;
 
         // Here i construct the inputhandler and give it the outputhandler so that outputhandler does not rely on the inputhandler, but the inputhandler does need the outputhandler interface. This is because the outputhandler is at a higher level.
         public InputHandler(
-            IOutputHandler outputhandler, 
-            IAbilityDataAccess abilityDataAccess, 
+            IOutputHandler outputhandler,
+            IStateHandler gamestateHandler,
+            IHttpContextAccessor httpContextAccessor,
+            IAbilityDataAccess abilityDataAccess,
             ICharacterClassDataAccess characterClassDataAccess,
             ICharacterDataAccess characterDataAccess)
         {
+            _gameStateHandler = gamestateHandler;
+            _httpContextAccessor = httpContextAccessor;
             _outputHandler = outputhandler;
             _abilityDataAccess = abilityDataAccess;
             _characterClassDataAccess = characterClassDataAccess;
             _characterDataAccess = characterDataAccess;
+
+
         }
 
         public void HandleInput(string input)
@@ -44,17 +54,28 @@ namespace DungeonTyper.Logic.Handlers
             _outputHandler.HandleOutput(_input);
 
             // CHECKS BELOW THIS COMMENT
-            if (CheckInputCaseInsensitive(_characterClassDataAccess.GetAllCharacterClasses().Select(c => c.ClassName).ToList()))
+            if (_gameStateHandler.GetState() == GameState.CharCreation)
             {
-                CreateNewCharacter();
-            }          
-            else if (CheckInputCaseInsensitive("Sit"))
-            {
-                _outputHandler.HandleOutput("You sit down.");
+                // pirvate void HandleCharacterCreationInput
+                if (CheckInputCaseInsensitive(_characterClassDataAccess.GetAllCharacterClasses().Select(c => c.ClassName).ToList()))
+                {
+                    CreateNewCharacter();
+                }
+                else
+                {
+                    _outputHandler.HandleOutput("Please insert a valid class!");
+                }
             }
-            else if (CheckInputCaseInsensitive("All Abilities"))
+            else if(_gameStateHandler.GetState() == GameState.Exploration)
             {
-                DisplayAllAbilities();
+                if (CheckInputCaseInsensitive("All Abilities"))
+                {
+                    DisplayAllAbilities();
+                }
+                else if (CheckInputCaseInsensitive("Sit"))
+                {
+                    _outputHandler.HandleOutput("You sit down.");
+                }
             }
         }
         private void DisplayAllAbilities()
@@ -73,6 +94,7 @@ namespace DungeonTyper.Logic.Handlers
                 int characterId = _characterDataAccess.CreateCharacter(_input);
                 ICharacter character = _characterDataAccess.GetCharacterById(characterId);
                 _outputHandler.HandleOutput("You chose: " + character.CharacterClass.ClassName);
+                UpdateGameState(2);
             }
             else
             {
@@ -94,11 +116,16 @@ namespace DungeonTyper.Logic.Handlers
             return String.Equals(_input, expectation, StringComparison.OrdinalIgnoreCase);
         }
 
+        private void UpdateGameState(int state)
+        {
+            _httpContextAccessor.HttpContext.Session.SetInt32("GameState", state);
+        }
+
         private bool CheckInputCaseInsensitive(List<string> expectations)
         {
             foreach (string expectation in expectations)
             {
-                if(String.Equals(_input, expectation, StringComparison.OrdinalIgnoreCase))
+                if (String.Equals(_input, expectation, StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }

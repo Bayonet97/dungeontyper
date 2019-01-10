@@ -30,6 +30,8 @@ namespace DungeonTyper.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IConfiguration>(Configuration); //add Configuration to our services collection
             services.AddTransient<IAbilityDataAccess, AbilityDataAccess>(); // register our IDataAccess class (from class library)
             services.AddTransient<ICharacterClassDataAccess, CharacterClassDataAccess>();
@@ -43,7 +45,7 @@ namespace DungeonTyper.Web
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -53,11 +55,11 @@ namespace DungeonTyper.Web
             {
                 // Set a short timeout for easy testing.
                 options.Cookie.Name = ".DungeonTyper.Session";
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.HttpOnly = true;
+                options.IdleTimeout = TimeSpan.FromSeconds(30);
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
