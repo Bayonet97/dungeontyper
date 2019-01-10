@@ -16,13 +16,15 @@ namespace DungeonTyper.Logic
         private readonly IOutputHandler _outputHandler;
         private readonly ICharacterClassDataAccess _characterClassDataAccess;
         private readonly IAbilityDataAccess _abilityDataAccess;
+        private readonly IStateHandler _gameStateHandler;
 
-        public ProgressLoader(IHttpContextAccessor httpContextAccessor, IOutputHandler outputhandler, ICharacterClassDataAccess characterClassDataAccess, IAbilityDataAccess abilityDataAccess)
+        public ProgressLoader(IHttpContextAccessor httpContextAccessor, IOutputHandler outputhandler, ICharacterClassDataAccess characterClassDataAccess, IAbilityDataAccess abilityDataAccess, IStateHandler gameStateHandler)
         {
             _httpContextAccessor = httpContextAccessor;
             _outputHandler = outputhandler;
             _characterClassDataAccess = characterClassDataAccess;
             _abilityDataAccess = abilityDataAccess;
+            _gameStateHandler = gameStateHandler;
         }
 
         public void Load()
@@ -40,6 +42,7 @@ namespace DungeonTyper.Logic
         }
         private void UpdateGameState(int state)
         {
+            _gameStateHandler.ChangeState((GameState)state);
             _httpContextAccessor.HttpContext.Session.SetInt32("GameState", state);
         }
 

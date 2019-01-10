@@ -12,8 +12,7 @@ using Microsoft.AspNetCore.Builder;
 namespace DungeonTyper.Logic.Handlers
 {
     public class InputHandler : IInputHandler
-    {
-        private List<ICharacterClass> _allCharacterClasses = new List<ICharacterClass>();
+    { 
         private string _input;
 
         private readonly IOutputHandler _outputHandler;
@@ -38,8 +37,6 @@ namespace DungeonTyper.Logic.Handlers
             _abilityDataAccess = abilityDataAccess;
             _characterClassDataAccess = characterClassDataAccess;
             _characterDataAccess = characterDataAccess;
-
-
         }
 
         public void HandleInput(string input)
@@ -78,17 +75,22 @@ namespace DungeonTyper.Logic.Handlers
                 }
             }
         }
+
         private void DisplayAllAbilities()
         {
             List<string> allAbilities = _abilityDataAccess.GetAllAbilities_CharacterClass();
             _outputHandler.HandleOutput(allAbilities);
         }
-
-        public void CreateNewCharacter()
+        private void GetAllCharacter_Abilities()
         {
-            _allCharacterClasses = _characterClassDataAccess.GetAllCharacterClasses();
+            // TO DO: A WAY TO STORE CHARACTER IN SESSION WITH GAMESTATE.
+            _abilityDataAccess.GetAllCharacter_Abilities();
+        }
+        private void CreateNewCharacter()
+        {
+            List<ICharacterClass> _allCharacterClasses = _characterClassDataAccess.GetAllCharacterClasses();
             // Check for valid input here
-            if (InputIsValidCharacterClass())
+            if (InputIsValidCharacterClass(_allCharacterClasses))
             {
                 // newCharacter.SetCharacterClass(characterClassDataAccess.GetCharacterClass(_input));
                 int characterId = _characterDataAccess.CreateCharacter(_input);
@@ -102,7 +104,7 @@ namespace DungeonTyper.Logic.Handlers
             }
         }
 
-        private bool InputIsValidCharacterClass()
+        private bool InputIsValidCharacterClass(List<ICharacterClass> _allCharacterClasses)
         {
             foreach (var c in _allCharacterClasses)
             {
