@@ -14,14 +14,22 @@ namespace DungeonTyper.Web.Controllers
     {
         // TO DO: SESSION MANAGEMENT
         private readonly IOutputHandler _outputHandler;
+        private readonly IProgressLoader _gameLoader;
         private readonly IInputHandler _inputHandler;
         private readonly IStateHandler _gameStateHandler;
         private readonly ICharacterClassDataAccess _characterClassDataAccess;
         private readonly IAbilityDataAccess _abilityDataAccess;
 
-        public GameController(IInputHandler inputHandler, IOutputHandler outputHandler, IStateHandler gameStateHandler, ICharacterClassDataAccess characterClassDataAccess, IAbilityDataAccess abilityDataAccess)
+        public GameController(
+            IProgressLoader gameLoader,
+            IInputHandler inputHandler,
+            IOutputHandler outputHandler,
+            IStateHandler gameStateHandler,
+            ICharacterClassDataAccess characterClassDataAccess,
+            IAbilityDataAccess abilityDataAccess)
         {
             _outputHandler = outputHandler;
+            _gameLoader = gameLoader;
             _inputHandler = inputHandler;
             _gameStateHandler = gameStateHandler;
             _characterClassDataAccess = characterClassDataAccess;
@@ -35,31 +43,10 @@ namespace DungeonTyper.Web.Controllers
 
         public string LoadData()
         {
-            if (false) // Load data here.
-            {
-                //      IProgressLoader loader = _progressLoaderFactory.Create();
-                //      loader.Load();
-                //     List<string> output = loader.GetLoadedOutput();
-            }
-            else // Character creation
-            {
-                HttpContext.Session.SetInt32("GameState", 1);
+            _gameLoader.Load();
 
-                _outputHandler.HandleOutput("Create a new character! Which class would you like to play? \rType down one of the following classes: ");
+            return _outputHandler.GetOutput();
 
-                foreach (ICharacterClass characterClass in _characterClassDataAccess.GetAllCharacterClasses())
-                {
-                    _outputHandler.HandleOutput("\r" + characterClass.ClassName);
-
-                    foreach (IAbility ability in _abilityDataAccess.GetCharacterClass_Abilities(characterClass.ClassName))
-                    {
-                        _outputHandler.HandleOutput("Starts with: " + ability.AbilityName);
-                    }
-       
-                }
-
-                return _outputHandler.GetOutput();
-            }
         }
 
         [HttpPost]
@@ -68,7 +55,7 @@ namespace DungeonTyper.Web.Controllers
             if (Request.Form.Count > 0)
             {
                 var gameState = HttpContext.Session.GetInt32("GameState");
-                _gameStateHandler.ChangeState((GameState)gameState); 
+                _gameStateHandler.ChangeState((GameState)gameState);
 
                 string input = Request.Form["inputText"];
 

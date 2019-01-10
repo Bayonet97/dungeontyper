@@ -7,7 +7,7 @@ namespace DungeonTyper.Logic.Models
 {
     public class Ability : IAbility
     {
-        public string Name { get; set; }
+        public string AbilityName { get; set; }
         public string Description { get; set; }
     }
 }

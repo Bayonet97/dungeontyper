@@ -4,7 +4,7 @@ namespace DungeonTyper.Logic.Models
 {
     public interface ICharacterClass
     {
-        List<Ability> ClassAbilities { get; set; }
+        List<IAbility> ClassAbilities { get; set; }
         string ClassName { get; set; }
     }
 }

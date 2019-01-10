@@ -33,6 +33,7 @@ namespace DungeonTyper.Web
             services.AddHttpContextAccessor();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IConfiguration>(Configuration); //add Configuration to our services collection
+            services.AddTransient<IProgressLoader, ProgressLoader>();
             services.AddTransient<IAbilityDataAccess, AbilityDataAccess>(); // register our IDataAccess class (from class library)
             services.AddTransient<ICharacterClassDataAccess, CharacterClassDataAccess>();
             services.AddTransient<ICharacterDataAccess, CharacterDataAccess>();
@@ -40,7 +41,6 @@ namespace DungeonTyper.Web
             services.AddTransient<IInputHandler, InputHandler>();
             services.AddScoped<IOutputHandler, OutputHandler>();
             services.AddSingleton<IStateHandler, GameStateHandler>();
-            services.AddSingleton<IFactory<IProgressLoader>, ProgressLoaderFactory>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
