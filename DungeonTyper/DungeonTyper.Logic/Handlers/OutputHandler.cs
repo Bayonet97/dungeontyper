@@ -10,17 +10,24 @@ namespace DungeonTyper.Logic.Handlers
 
         public string GetOutput()
         {
+            if(false) // Something to check if no output was given.
+            {
+                return "Nothing happened.";
+            }
             return _output;
         }
 
         public void HandleOutput(string outputToHandle)
         {
-            _output = outputToHandle;
+            _output += string.Join(Environment.NewLine, outputToHandle);
+            _output += Environment.NewLine;
         }
 
         public void HandleOutput(List<string> outputToHandle)
         {
-            _output = string.Join(Environment.NewLine, outputToHandle);
+            _output += string.Join(Environment.NewLine, outputToHandle);
+            _output += Environment.NewLine;
         }
+
     }
 }

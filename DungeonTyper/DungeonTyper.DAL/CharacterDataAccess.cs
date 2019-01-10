@@ -13,84 +13,77 @@ using DungeonTyper.Common.Utils;
 
 namespace DungeonTyper.DAL
 {
-    public class CharacterClassDataAccess : ICharacterClassDataAccess
+    public class CharacterDataAccess : ICharacterDataAccess
     { 
-        private readonly IFactory<ICharacterClass> _characterClassFactory = new CharacterClassFactory();
         private readonly IFactory<SqlConnection> _connectionFactory;
+        private readonly ICharacterClassDataAccess _characterClassDataAccess;
 
-        public CharacterClassDataAccess(IFactory<SqlConnection> connectionFactory)
+        public CharacterDataAccess(IFactory<SqlConnection> connectionFactory, ICharacterClassDataAccess characterClassDataAccess)
         {
            _connectionFactory = connectionFactory;
+            _characterClassDataAccess = characterClassDataAccess;
         }
 
-        public ICharacterClass GetCharacterClassByName(string characterClass)
+        public int CreateCharacter(string characterClass, string characterName = "TempName")
         {
+            int characterId;
             //var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
-
-            ICharacterClass chosenClass = _characterClassFactory.Create();
-
             using (SqlConnection cnn = _connectionFactory.Create())
             {
-
-                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetByName]", cnn);
+                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacter_CreateNew]", cnn);
 
                 // set command type
                 cmd.CommandType = CommandType.StoredProcedure;
                 // add one or more parameters
-                cmd.Parameters.AddWithValue("@ClassName", characterClass);
+                cmd.Parameters.AddWithValue("@CharacterName", characterName);
+                cmd.Parameters.AddWithValue("@ClassName", characterClass); 
 
                 cnn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    chosenClass.ClassName = reader["ClassName"].ToString();
-                }
+                characterId = Convert.ToInt32(cmd.ExecuteScalar());
+
                 cnn.Close();
 
-                return chosenClass;
             }
+
+            return characterId;
         }
-
-
-        public ICharacterClass GetCharacterClassById(int characterClassId)
+        public ICharacter GetCharacterById(int id)
         {
+            ICharacter character = null;
             //var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
-
-            ICharacterClass chosenClass = _characterClassFactory.Create();
-
             using (SqlConnection cnn = _connectionFactory.Create())
             {
-
-                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetById]", cnn);
+                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacter_GetById]", cnn);
 
                 // set command type
                 cmd.CommandType = CommandType.StoredProcedure;
                 // add one or more parameters
-                cmd.Parameters.AddWithValue("@ClassId", characterClassId);
+                cmd.Parameters.AddWithValue("@CharacterId", id);
 
                 cnn.Open();
+
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    chosenClass.ClassName = reader["ClassName"].ToString();
+                    character = new Character(Convert.ToInt16(reader["Id"]), reader["CharacterName"].ToString(), _characterClassDataAccess.GetCharacterClassById(Convert.ToInt16(reader["CharacterClassId"])),Convert.ToBoolean(Convert.ToInt16(reader["Alive"])));
                 }
+
                 cnn.Close();
 
-                return chosenClass;
             }
+
+            return character;
         }
 
-        public List<ICharacterClass> GetAllCharacterClasses()
+        public string GetCountCharacterAliveAndDead()
         {
-            List<ICharacterClass> allCharacterClasses = new List<ICharacterClass>();
-
+            string totalAliveAndDead = "";
             using (SqlConnection cnn = _connectionFactory.Create())
             {
-
-                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterClass_GetAll]", cnn);
-
+                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spCharacterGetAllAliveAndDeadCount]", cnn);
+    
                 // set command type
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -99,12 +92,11 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    allCharacterClasses.Add(new CharacterClass() { ClassName = reader["ClassName"].ToString() });
+                    totalAliveAndDead = "Living Adventurers: " + reader["Alive"].ToString() + " Fallen Adventurers: " + reader["Dead"].ToString();
                 }
-                cnn.Close();
-
-                return allCharacterClasses;
+                cnn.Close();      
             }
+            return totalAliveAndDead;
         }
     }
 }

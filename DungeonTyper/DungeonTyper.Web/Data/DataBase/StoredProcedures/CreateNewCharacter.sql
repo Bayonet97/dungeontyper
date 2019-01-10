@@ -7,7 +7,7 @@
 USE [dbi397017]
 GO
 
-IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_NAME = 'DungeonTyper.spCharacter_CreateNew' AND ROUTINE_SCHEMA = 'DungeonTyper') DROP PROCEDURE [DungeonTyper].[spCharacter_CreateNew]
+IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_NAME = 'spCharacter_CreateNew' AND ROUTINE_SCHEMA = 'DungeonTyper') DROP PROCEDURE [DungeonTyper].[spCharacter_CreateNew]
 GO
 
 SET ANSI_NULLS ON
@@ -28,5 +28,6 @@ VALUES
 	 FROM [DungeonTyper].[CharacterClass]
 	 WHERE [CharacterClass].[ClassName] = @ClassName),
 	1)
+	SELECT SCOPE_IDENTITY()
 END
 GO

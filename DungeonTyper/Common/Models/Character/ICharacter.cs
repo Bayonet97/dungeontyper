@@ -8,6 +8,8 @@ namespace DungeonTyper.Common.Models
 
         List<IAbility> CharacterAbilities { get; }
         bool Alive { get; }
+
+        int CharacterId { get; }
         //int Constitution { get; }
         //int Strength { get; }
         //int Dexterity { get; }

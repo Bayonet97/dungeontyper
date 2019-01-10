@@ -4,6 +4,7 @@ GO
 --DELETE DATA
 
 DELETE FROM [DungeonTyper].[CharacterClass_Abilities]
+DELETE FROM [DungeonTyper].[Character_Abilities]
 DELETE FROM [DungeonTyper].[Ability]
 DELETE FROM [DungeonTyper].[CharacterClass]
 DELETE FROM [DungeonTyper].[Character]
@@ -16,14 +17,14 @@ INSERT INTO [DungeonTyper].[CharacterClass]([ClassName]) VALUES('Rogue')
 INSERT INTO [DungeonTyper].[CharacterClass]([ClassName]) VALUES('Priest')
 
 --	ABILITY
-INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Fireball')
-INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Charge')
-INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Flash Heal')
-INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Backstab')
-INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Stomp')
-INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Dodge')
-INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Pierce')
-INSERT INTO [DungeonTyper].[Ability]([AbilityName]) VALUES('Slash')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName], [AbilityDescription]) VALUES('Fireball', 'A ball of fire.')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName], [AbilityDescription]) VALUES('Charge', 'Violently rush towards the enemy.')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName], [AbilityDescription]) VALUES('Flash Heal', 'Some light that mends your wounds.')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName], [AbilityDescription]) VALUES('Backstab', 'The weakest parts!')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName], [AbilityDescription]) VALUES('Stomp', 'That should stun the enemy.')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName], [AbilityDescription]) VALUES('Dodge', 'Better not get hit by that.')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName], [AbilityDescription]) VALUES('Pierce', 'Seems like that will sting.')
+INSERT INTO [DungeonTyper].[Ability]([AbilityName], [AbilityDescription]) VALUES('Slash', 'That will leave a nasty cut.')
 
 
 --FOREIGN KEYS

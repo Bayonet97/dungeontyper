@@ -33,10 +33,11 @@ namespace DungeonTyper.Web
             services.AddSingleton<IConfiguration>(Configuration); //add Configuration to our services collection
             services.AddTransient<IAbilityDataAccess, AbilityDataAccess>(); // register our IDataAccess class (from class library)
             services.AddTransient<ICharacterClassDataAccess, CharacterClassDataAccess>();
+            services.AddTransient<ICharacterDataAccess, CharacterDataAccess>();
             services.AddTransient<IFactory<SqlConnection>, ConnectionFactory>();
             services.AddTransient<IInputHandler, InputHandler>();
-            services.AddTransient<IOutputHandler, OutputHandler>();
-            services.AddSingleton<IFactory<IStateHandler>, GameStateHandlerFactory>();
+            services.AddScoped<IOutputHandler, OutputHandler>();
+            services.AddSingleton<IStateHandler, GameStateHandler>();
             services.AddSingleton<IFactory<IProgressLoader>, ProgressLoaderFactory>();
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -51,6 +52,7 @@ namespace DungeonTyper.Web
             services.AddSession(options =>
             {
                 // Set a short timeout for easy testing.
+                options.Cookie.Name = ".DungeonTyper.Session";
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
             });
@@ -67,7 +69,7 @@ namespace DungeonTyper.Web
             }
             else
             {
-                app.UseExceptionHandler(" / Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();

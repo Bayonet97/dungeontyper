@@ -1,6 +1,15 @@
-﻿$(window).load(function () {
-
-})
+﻿function LoadData() {
+    $.ajax({
+        url: '/Game/LoadData',
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (output) {
+            WriteLine(output);
+        }
+    });
+    return false;
+}
 
 function SubmitInput() {
 
