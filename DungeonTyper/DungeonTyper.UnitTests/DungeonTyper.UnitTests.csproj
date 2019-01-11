@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\DungeonTyper.Common.csproj" />
+    <ProjectReference Include="..\DungeonTyper.Common\DungeonTyper.Common.csproj" />
     <ProjectReference Include="..\DungeonTyper.DAL\DungeonTyper.DAL.csproj" />
     <ProjectReference Include="..\DungeonTyper.Logic\DungeonTyper.Logic.csproj" />
     <ProjectReference Include="..\DungeonTyper.Web\DungeonTyper.Web.csproj" />

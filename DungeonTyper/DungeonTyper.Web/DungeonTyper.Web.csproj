@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\DungeonTyper.Common.csproj" />
+    <ProjectReference Include="..\DungeonTyper.Common\DungeonTyper.Common.csproj" />
     <ProjectReference Include="..\DungeonTyper.Logic\DungeonTyper.Logic.csproj" />
   </ItemGroup>
 
