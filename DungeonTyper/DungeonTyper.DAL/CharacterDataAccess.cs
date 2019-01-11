@@ -67,7 +67,7 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    character = new Character(Convert.ToInt16(reader["Id"]), reader["CharacterName"].ToString(), _characterClassDataAccess.GetCharacterClassById(Convert.ToInt16(reader["CharacterClassId"])),Convert.ToBoolean(Convert.ToInt16(reader["Alive"])));
+                    character = new Character(Convert.ToInt16(reader["Id"]), reader["CharacterName"].ToString(), _characterClassDataAccess.GetCharacterClassById(Convert.ToInt16(reader["CharacterClassId"])));
                 }
 
                 cnn.Close();

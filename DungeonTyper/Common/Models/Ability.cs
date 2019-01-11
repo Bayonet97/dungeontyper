@@ -7,7 +7,13 @@ namespace DungeonTyper.Common.Models
 {
     public class Ability : IAbility
     {
-        public string AbilityName { get; set; }
-        public string AbilityDescription { get; set; }
+        public string AbilityName { get; private set; }
+        public string AbilityDescription { get; private set; }
+
+        public Ability(string abilityName, string abilityDescription)
+        {
+            AbilityName = abilityName;
+            AbilityDescription = abilityDescription;
+        }
     }
 }

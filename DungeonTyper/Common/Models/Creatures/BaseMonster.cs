@@ -8,5 +8,10 @@ namespace DungeonTyper.Common.Models
     {
         public abstract string Name { get; }
         public abstract int HitPoints { get; }
+
+        public abstract string CharacterLosesBattle();
+        public abstract string CharacterWinsBattle();
+        public abstract string StartBattle();
+        public abstract void TakeDamage(int damage);
     }
 }

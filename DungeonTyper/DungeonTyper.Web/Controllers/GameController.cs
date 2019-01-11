@@ -7,6 +7,7 @@ using DungeonTyper.Logic.Handlers;
 using Microsoft.AspNetCore.Http;
 using DungeonTyper.DAL;
 using DungeonTyper.Common.Models;
+using DungeonTyper.Common;
 
 namespace DungeonTyper.Web.Controllers
 {
@@ -14,26 +15,24 @@ namespace DungeonTyper.Web.Controllers
     {
         // TO DO: SESSION MANAGEMENT
         private readonly IOutputHandler _outputHandler;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly GameSession _gameSession;
         private readonly IProgressLoader _gameLoader;
         private readonly IInputHandler _inputHandler;
-        private readonly IStateHandler _gameStateHandler;
-        private readonly ICharacterClassDataAccess _characterClassDataAccess;
-        private readonly IAbilityDataAccess _abilityDataAccess;
+
 
         public GameController(
+            GameSession gameSession,
             IProgressLoader gameLoader,
             IInputHandler inputHandler,
             IOutputHandler outputHandler,
-            IStateHandler gameStateHandler,
-            ICharacterClassDataAccess characterClassDataAccess,
-            IAbilityDataAccess abilityDataAccess)
+            IHttpContextAccessor httpContextAccessor)
         {
             _outputHandler = outputHandler;
+            _httpContextAccessor = httpContextAccessor;
+            _gameSession = gameSession;
             _gameLoader = gameLoader;
             _inputHandler = inputHandler;
-            _gameStateHandler = gameStateHandler;
-            _characterClassDataAccess = characterClassDataAccess;
-            _abilityDataAccess = abilityDataAccess;
         }
 
         public ActionResult Index()
@@ -43,6 +42,7 @@ namespace DungeonTyper.Web.Controllers
 
         public string LoadData()
         {
+            HttpContext.Session.SetObject("GameSession", _gameSession);
             _gameLoader.Load();
 
             return _outputHandler.GetOutput();
@@ -54,9 +54,6 @@ namespace DungeonTyper.Web.Controllers
         {
             if (Request.Form.Count > 0)
             {
-                var gameState = HttpContext.Session.GetInt32("GameState");
-                _gameStateHandler.ChangeState((GameState)gameState);
-
                 string input = Request.Form["inputText"];
 
                 _inputHandler.HandleInput(input);

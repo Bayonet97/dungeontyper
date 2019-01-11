@@ -8,35 +8,42 @@ using DungeonTyper.Common.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
+using DungeonTyper.Common;
+using DungeonTyper.Logic.GameStates;
+using DungeonTyper.Logic.Models;
+using ICharacter = DungeonTyper.Common.Models.ICharacter;
+using ICharacterClass = DungeonTyper.Common.Models.ICharacterClass;
+using IAbility = DungeonTyper.Common.Models.IAbility;
+using Character = DungeonTyper.Common.Models.Character;
 
 namespace DungeonTyper.Logic.Handlers
 {
     public class InputHandler : IInputHandler
-    { 
+    {
         private string _input;
 
         private readonly IOutputHandler _outputHandler;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IStateHandler _gameStateHandler;
         private readonly IAbilityDataAccess _abilityDataAccess;
         private readonly ICharacterClassDataAccess _characterClassDataAccess;
         private readonly ICharacterDataAccess _characterDataAccess;
+        private readonly ICombatState _combatState;
 
         // Here i construct the inputhandler and give it the outputhandler so that outputhandler does not rely on the inputhandler, but the inputhandler does need the outputhandler interface. This is because the outputhandler is at a higher level.
         public InputHandler(
             IOutputHandler outputhandler,
-            IStateHandler gamestateHandler,
             IHttpContextAccessor httpContextAccessor,
             IAbilityDataAccess abilityDataAccess,
             ICharacterClassDataAccess characterClassDataAccess,
-            ICharacterDataAccess characterDataAccess)
+            ICharacterDataAccess characterDataAccess,
+            ICombatState combatState)
         {
-            _gameStateHandler = gamestateHandler;
             _httpContextAccessor = httpContextAccessor;
             _outputHandler = outputhandler;
             _abilityDataAccess = abilityDataAccess;
             _characterClassDataAccess = characterClassDataAccess;
             _characterDataAccess = characterDataAccess;
+            _combatState = combatState;
         }
 
         public void HandleInput(string input)
@@ -51,7 +58,9 @@ namespace DungeonTyper.Logic.Handlers
             _outputHandler.HandleOutput(_input);
 
             // CHECKS BELOW THIS COMMENT
-            if (_gameStateHandler.GetState() == GameState.CharCreation)
+            GameState currentState = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").CurrentGameState;
+
+            if (currentState == GameState.CharCreation)
             {
                 // pirvate void HandleCharacterCreationInput
                 if (CheckInputCaseInsensitive(_characterClassDataAccess.GetAllCharacterClasses().Select(c => c.ClassName).ToList()))
@@ -63,16 +72,48 @@ namespace DungeonTyper.Logic.Handlers
                     _outputHandler.HandleOutput("Please insert a valid class!");
                 }
             }
-            else if(_gameStateHandler.GetState() == GameState.Exploration)
+            else if (currentState == GameState.Exploration)
             {
                 if (CheckInputCaseInsensitive("All Abilities"))
                 {
                     DisplayAllAbilities();
                 }
+                else if (CheckInputCaseInsensitive("My Abilities"))
+                {
+                    DisplayAllCharacter_Abilities();
+                }
                 else if (CheckInputCaseInsensitive("Sit"))
                 {
+                    // Stuff like this goes into states where you can freely act.
                     _outputHandler.HandleOutput("You sit down.");
                 }
+                else if (CheckInputCaseInsensitive("Training Dummy"))
+                {
+                    // Stuff like this goes in other states from where combat can start.
+                    SpawnDummy();
+                }
+            } // combat state stuff
+            else if (currentState == GameState.Combat)
+            {
+                ReInstantiateCombat();
+                if (CheckInputCaseInsensitive(_abilityDataAccess.GetAllCharacter_Abilities(_httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").Character.CharacterId).Select(a => a.AbilityName).ToList()))
+                {
+                    IAbility ability = _abilityDataAccess.GetAbilityByName(_input);
+                    ICharacter character = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").Character;
+
+                    string attackOutput = character.Attack(ability);
+                    _outputHandler.HandleOutput(attackOutput);
+                }
+                else if (CheckInputCaseInsensitive("Forfeit") || CheckInputCaseInsensitive("Run"))
+                {
+                    _combatState.EndBattleDefeat();
+                    UpdateGameState(GameState.Exploration);
+                }
+
+            }
+            if(_outputHandler.GetOutput() == "" || _outputHandler.GetOutput() == null)
+            {
+                _outputHandler.HandleOutput("Nothing happened.");
             }
         }
 
@@ -81,10 +122,16 @@ namespace DungeonTyper.Logic.Handlers
             List<string> allAbilities = _abilityDataAccess.GetAllAbilities_CharacterClass();
             _outputHandler.HandleOutput(allAbilities);
         }
-        private void GetAllCharacter_Abilities()
+        private void DisplayAllCharacter_Abilities()
         {
-            // TO DO: A WAY TO STORE CHARACTER IN SESSION WITH GAMESTATE.
-            _abilityDataAccess.GetAllCharacter_Abilities();
+            int id = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").Character.CharacterId;
+            List<IAbility> abilities = _abilityDataAccess.GetAllCharacter_Abilities(id).ToList();
+
+            foreach (IAbility ability in abilities)
+            {
+                _outputHandler.HandleOutput(ability.AbilityName);
+            }
+
         }
         private void CreateNewCharacter()
         {
@@ -95,8 +142,11 @@ namespace DungeonTyper.Logic.Handlers
                 // newCharacter.SetCharacterClass(characterClassDataAccess.GetCharacterClass(_input));
                 int characterId = _characterDataAccess.CreateCharacter(_input);
                 ICharacter character = _characterDataAccess.GetCharacterById(characterId);
+                GameSession gameSession = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession");
+                gameSession.Character = character as Character;
+                _httpContextAccessor.HttpContext.Session.SetObject("GameSession", gameSession);
                 _outputHandler.HandleOutput("You chose: " + character.CharacterClass.ClassName);
-                UpdateGameState(2);
+                UpdateGameState(GameState.Exploration);
             }
             else
             {
@@ -104,6 +154,17 @@ namespace DungeonTyper.Logic.Handlers
             }
         }
 
+        private void SpawnDummy()
+        {
+            UpdateGameState(GameState.Combat);
+            ICharacter character = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").Character;
+            _combatState.StartBattle(character, new TrainingDummy());
+        }
+        private void ReInstantiateCombat()
+        {
+            ICharacter character = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").Character;
+            _combatState.Reinstantiate(character, new TrainingDummy());
+        }
         private bool InputIsValidCharacterClass(List<ICharacterClass> _allCharacterClasses)
         {
             foreach (var c in _allCharacterClasses)
@@ -117,12 +178,6 @@ namespace DungeonTyper.Logic.Handlers
         {
             return String.Equals(_input, expectation, StringComparison.OrdinalIgnoreCase);
         }
-
-        private void UpdateGameState(int state)
-        {
-            _httpContextAccessor.HttpContext.Session.SetInt32("GameState", state);
-        }
-
         private bool CheckInputCaseInsensitive(List<string> expectations)
         {
             foreach (string expectation in expectations)
@@ -134,5 +189,12 @@ namespace DungeonTyper.Logic.Handlers
             }
             return false;
         }
+        private void UpdateGameState(GameState state)
+        {
+            GameSession gameSession = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession");
+            gameSession.CurrentGameState = state;
+            _httpContextAccessor.HttpContext.Session.SetObject("GameSession", gameSession);
+        }
+
     }
 }

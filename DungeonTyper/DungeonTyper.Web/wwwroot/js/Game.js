@@ -1,4 +1,6 @@
-﻿function LoadData() {
+﻿
+function LoadData() {
+
     $.ajax({
         url: '/Game/LoadData',
         type: 'POST',
@@ -8,7 +10,6 @@
     });
     return false;
 }
-
 function SubmitInput() {
 
     var formData = new FormData();
@@ -34,6 +35,9 @@ function SubmitInput() {
 
 function WriteLine(output) {
     var msg = output.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var outputMsg = msg + "\n"
-    document.getElementById("dungeontextarea").value += outputMsg;
+    var outputMsg = msg + "\n";
+
+    document.getElementById("dungeontextarea").value += outputMsg;  
+    $('#dungeontextarea').scrollTop($('#dungeontextarea')[0].scrollHeight);
+
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DungeonTyper.Common;
 
 namespace DungeonTyper.Logic
 {
@@ -16,15 +17,13 @@ namespace DungeonTyper.Logic
         private readonly IOutputHandler _outputHandler;
         private readonly ICharacterClassDataAccess _characterClassDataAccess;
         private readonly IAbilityDataAccess _abilityDataAccess;
-        private readonly IStateHandler _gameStateHandler;
 
-        public ProgressLoader(IHttpContextAccessor httpContextAccessor, IOutputHandler outputhandler, ICharacterClassDataAccess characterClassDataAccess, IAbilityDataAccess abilityDataAccess, IStateHandler gameStateHandler)
+        public ProgressLoader(IHttpContextAccessor httpContextAccessor, IOutputHandler outputhandler, ICharacterClassDataAccess characterClassDataAccess, IAbilityDataAccess abilityDataAccess)
         {
             _httpContextAccessor = httpContextAccessor;
             _outputHandler = outputhandler;
             _characterClassDataAccess = characterClassDataAccess;
             _abilityDataAccess = abilityDataAccess;
-            _gameStateHandler = gameStateHandler;
         }
 
         public void Load()
@@ -40,15 +39,16 @@ namespace DungeonTyper.Logic
                 CreateNewCharacter();
             }
         }
-        private void UpdateGameState(int state)
+        private void UpdateGameState(GameState state)
         {
-            _gameStateHandler.ChangeState((GameState)state);
-            _httpContextAccessor.HttpContext.Session.SetInt32("GameState", state);
+            GameSession gameSession = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession");
+            gameSession.CurrentGameState = state;
+            _httpContextAccessor.HttpContext.Session.SetObject("GameSession", gameSession);
         }
 
         private void CreateNewCharacter()
         {
-            UpdateGameState(1);
+            UpdateGameState(GameState.CharCreation);
             _outputHandler.HandleOutput("Create a new character! Which class would you like to play? \rType down one of the following classes: ");
 
             foreach (Common.Models.ICharacterClass characterClass in _characterClassDataAccess.GetAllCharacterClasses())
@@ -57,7 +57,7 @@ namespace DungeonTyper.Logic
 
                 foreach (Common.Models.IAbility ability in _abilityDataAccess.GetCharacterClass_Abilities(characterClass.ClassName))
                 {
-                    _outputHandler.HandleOutput("Starts with: " + ability.AbilityName);
+                    _outputHandler.HandleOutput("Starts with: " + ability.AbilityName + ", " + ability.AbilityDescription);
                 }
 
             }

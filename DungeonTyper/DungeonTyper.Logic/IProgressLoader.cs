@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DungeonTyper.Common;
 using DungeonTyper.Logic.Models;
 
 namespace DungeonTyper.Logic

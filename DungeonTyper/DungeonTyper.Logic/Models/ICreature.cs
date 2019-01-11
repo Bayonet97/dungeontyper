@@ -8,5 +8,9 @@ namespace DungeonTyper.Logic.Models
     {
         string Name { get; }
         int HitPoints { get; }
+        void TakeDamage(int damage);
+        string StartBattle();
+        string CharacterWinsBattle();
+        string CharacterLosesBattle();
     }
 }

@@ -7,6 +7,7 @@ namespace DungeonTyper.DAL
     {
         List<string> GetAllAbilities_CharacterClass();
         List<string> GetAllCharacterClass_AbilitiesCount();
+        IAbility GetAbilityByName(string name);
         List<IAbility> GetAllCharacter_Abilities(int characterId);
         List<IAbility> GetCharacterClass_Abilities(string characterClass);
     }

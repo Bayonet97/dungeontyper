@@ -15,9 +15,26 @@ namespace DungeonTyper.Logic.Models
         public int Dexterity { get; private set; }
         public int Intelligence { get; private set; }
 
+        public Character(int characterId, string name, int characterClassId)
+        {
+            CharacterId = characterId;
+            Name = name;
+            
+        }
+
         public void Attack(IAbility ability)
         {
             throw new NotImplementedException();
+        }
+
+        public string CharacterLosesBattle()
+        {
+            return "You lose.";
+        }
+
+        public string CharacterWinsBattle()
+        {
+            return "You win.";
         }
 
         public void EquipItem(IItem item)
@@ -33,6 +50,16 @@ namespace DungeonTyper.Logic.Models
         public void SetCharacterClass(ICharacterClass characterClass)
         {
             CharacterClass = characterClass;
+        }
+
+        public string StartBattle()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TakeDamage(int damage)
+        {
+            throw new NotImplementedException();
         }
     }
 }

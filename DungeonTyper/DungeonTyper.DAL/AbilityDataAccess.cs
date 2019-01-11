@@ -15,9 +15,32 @@ namespace DungeonTyper.DAL
         {
             _connectionFactory = connectionFactory;
         }
+        public IAbility GetAbilityByName(string name)
+        {
+            IAbility ability = new Ability("Unknown", "Unknown");
+            using (SqlConnection cnn = _connectionFactory.Create())
+            {
+
+                SqlCommand cmd = new SqlCommand("[DungeonTyper].[spAbility_GetByName]", cnn);
+
+                // set command type
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@AbilityName", name);
+                cnn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ability = new Ability(reader["AbilityName"].ToString(), reader["AbilityDescription"].ToString());
+                }
+                cnn.Close();
+
+                return ability;
+            }
+        }
         public List<string> GetAllAbilities_CharacterClass()
         {
-            List<string> allAbilities = new List<string>(); 
+            List<string> allAbilities = new List<string>();
             using (SqlConnection cnn = _connectionFactory.Create())
             {
 
@@ -57,7 +80,7 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    allCharacterClassAbilities.Add(new Ability() { AbilityName = reader["AbilityName"].ToString() /*, AbilityDescription = reader["AbilityDescription"].ToString()*/ });
+                    allCharacterClassAbilities.Add(new Ability(reader["AbilityName"].ToString(), reader["AbilityDescription"].ToString()));
                 }
                 cnn.Close();
 
@@ -84,7 +107,7 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    allCharacterAbilities.Add(new Ability() { AbilityName = reader["AbilityName"].ToString(), AbilityDescription = reader["AbilityDescription"].ToString() });
+                    allCharacterAbilities.Add(new Ability(reader["AbilityName"].ToString(),reader["AbilityDescription"].ToString()));
                 }
                 cnn.Close();
 

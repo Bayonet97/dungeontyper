@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DungeonTyper.DAL;
-using DungeonTyper.Logic.Factories;
 using DungeonTyper.Logic.Handlers;
 using DungeonTyper.Common.Utils;
 using DungeonTyper.Logic;
 using DungeonTyper.DAL.Factories;
 using System.Data.SqlClient;
-
+using DungeonTyper.Common;
+using DungeonTyper.Logic.GameStates;
 namespace DungeonTyper.Web
 {
     public class Startup
@@ -32,6 +29,7 @@ namespace DungeonTyper.Web
         {
             services.AddHttpContextAccessor();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<GameSession>();
             services.AddSingleton<IConfiguration>(Configuration); //add Configuration to our services collection
             services.AddTransient<IProgressLoader, ProgressLoader>();
             services.AddTransient<IAbilityDataAccess, AbilityDataAccess>(); // register our IDataAccess class (from class library)
@@ -40,7 +38,7 @@ namespace DungeonTyper.Web
             services.AddTransient<IFactory<SqlConnection>, ConnectionFactory>();
             services.AddTransient<IInputHandler, InputHandler>();
             services.AddScoped<IOutputHandler, OutputHandler>();
-            services.AddSingleton<IStateHandler, GameStateHandler>();
+            services.AddScoped<ICombatState, CombatState>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -55,7 +53,7 @@ namespace DungeonTyper.Web
             {
                 // Set a short timeout for easy testing.
                 options.Cookie.Name = ".DungeonTyper.Session";
-                options.IdleTimeout = TimeSpan.FromSeconds(30);
+                options.IdleTimeout = TimeSpan.FromDays(9999);
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

@@ -7,7 +7,7 @@ namespace DungeonTyper.DAL
     public interface ICharacterClassDataAccess
     {
         ICharacterClass GetCharacterClassByName(string characterClass);
-        ICharacterClass GetCharacterClassById(int characterClassId);
+        CharacterClass GetCharacterClassById(int characterClassId);
         List<ICharacterClass> GetAllCharacterClasses();
     }
 }

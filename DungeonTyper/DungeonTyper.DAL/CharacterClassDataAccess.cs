@@ -53,11 +53,11 @@ namespace DungeonTyper.DAL
         }
 
 
-        public ICharacterClass GetCharacterClassById(int characterClassId)
+        public CharacterClass GetCharacterClassById(int characterClassId)
         {
             //var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
 
-            ICharacterClass chosenClass = _characterClassFactory.Create();
+            CharacterClass chosenClass = new CharacterClass();
 
             using (SqlConnection cnn = _connectionFactory.Create())
             {

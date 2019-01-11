@@ -2,7 +2,7 @@
 {
     public interface IAbility
     {
-        string AbilityDescription { get; set; }
-        string AbilityName { get; set; }
+        string AbilityDescription { get;  }
+        string AbilityName { get;  }
     }
 }
