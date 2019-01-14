@@ -7,6 +7,6 @@ namespace DungeonTyper.Logic.Builders
 {
     interface ICreatureGetter
     {
-        ICreature GetCreature();
+        ICreatureCommon GetCreature();
     }
 }

@@ -51,11 +51,11 @@ namespace DungeonTyper.Logic
             UpdateGameState(GameState.CharCreation);
             _outputHandler.HandleOutput("Create a new character! Which class would you like to play? \rType down one of the following classes: ");
 
-            foreach (Common.Models.ICharacterClass characterClass in _characterClassDataAccess.GetAllCharacterClasses())
+            foreach (Common.Models.ICharacterClassCommon characterClass in _characterClassDataAccess.GetAllCharacterClasses())
             {
                 _outputHandler.HandleOutput("\r" + characterClass.ClassName);
 
-                foreach (Common.Models.IAbility ability in _abilityDataAccess.GetCharacterClass_Abilities(characterClass.ClassName))
+                foreach (Common.Models.IAbilityCommon ability in _abilityDataAccess.GetCharacterClass_Abilities(characterClass.ClassName))
                 {
                     _outputHandler.HandleOutput("Starts with: " + ability.AbilityName + ", " + ability.AbilityDescription);
                 }

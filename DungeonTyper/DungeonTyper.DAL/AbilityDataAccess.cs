@@ -15,9 +15,9 @@ namespace DungeonTyper.DAL
         {
             _connectionFactory = connectionFactory;
         }
-        public IAbility GetAbilityByName(string name)
+        public IAbilityCommon GetAbilityByName(string name)
         {
-            IAbility ability = new Ability("Unknown", "Unknown");
+            IAbilityCommon ability = new AbilityCommon("Unknown", "Unknown");
             using (SqlConnection cnn = _connectionFactory.Create())
             {
 
@@ -31,7 +31,7 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    ability = new Ability(reader["AbilityName"].ToString(), reader["AbilityDescription"].ToString());
+                    ability = new AbilityCommon(reader["AbilityName"].ToString(), reader["AbilityDescription"].ToString());
                 }
                 cnn.Close();
 
@@ -62,9 +62,9 @@ namespace DungeonTyper.DAL
             }
         }
 
-        public List<IAbility> GetCharacterClass_Abilities(string className)
+        public List<IAbilityCommon> GetCharacterClass_Abilities(string className)
         {
-            List<IAbility> allCharacterClassAbilities = new List<IAbility>();
+            List<IAbilityCommon> allCharacterClassAbilities = new List<IAbilityCommon>();
 
             using (SqlConnection cnn = _connectionFactory.Create())
             {
@@ -80,7 +80,7 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    allCharacterClassAbilities.Add(new Ability(reader["AbilityName"].ToString(), reader["AbilityDescription"].ToString()));
+                    allCharacterClassAbilities.Add(new AbilityCommon(reader["AbilityName"].ToString(), reader["AbilityDescription"].ToString()));
                 }
                 cnn.Close();
 
@@ -88,9 +88,9 @@ namespace DungeonTyper.DAL
             }
         }
 
-        public List<IAbility> GetAllCharacter_Abilities(int characterId)
+        public List<IAbilityCommon> GetAllCharacter_Abilities(int characterId)
         {
-            List<IAbility> allCharacterAbilities = new List<IAbility>();
+            List<IAbilityCommon> allCharacterAbilities = new List<IAbilityCommon>();
 
             using (SqlConnection cnn = _connectionFactory.Create())
             {
@@ -107,7 +107,7 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    allCharacterAbilities.Add(new Ability(reader["AbilityName"].ToString(),reader["AbilityDescription"].ToString()));
+                    allCharacterAbilities.Add(new AbilityCommon(reader["AbilityName"].ToString(),reader["AbilityDescription"].ToString()));
                 }
                 cnn.Close();
 

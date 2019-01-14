@@ -48,9 +48,9 @@ namespace DungeonTyper.DAL
 
             return characterId;
         }
-        public ICharacter GetCharacterById(int id)
+        public ICharacterCommon GetCharacterById(int id)
         {
-            ICharacter character = null;
+            ICharacterCommon character = null;
             //var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
             using (SqlConnection cnn = _connectionFactory.Create())
             {
@@ -67,7 +67,7 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    character = new Character(Convert.ToInt16(reader["Id"]), reader["CharacterName"].ToString(), _characterClassDataAccess.GetCharacterClassById(Convert.ToInt16(reader["CharacterClassId"])));
+                    character = new CharacterCommon(Convert.ToInt16(reader["Id"]), reader["CharacterName"].ToString(), _characterClassDataAccess.GetCharacterClassById(Convert.ToInt16(reader["CharacterClassId"])));
                 }
 
                 cnn.Close();

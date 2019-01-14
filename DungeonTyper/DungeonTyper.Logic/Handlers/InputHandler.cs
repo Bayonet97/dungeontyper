@@ -11,10 +11,6 @@ using Microsoft.AspNetCore.Builder;
 using DungeonTyper.Common;
 using DungeonTyper.Logic.GameStates;
 using DungeonTyper.Logic.Models;
-using ICharacter = DungeonTyper.Common.Models.ICharacter;
-using ICharacterClass = DungeonTyper.Common.Models.ICharacterClass;
-using IAbility = DungeonTyper.Common.Models.IAbility;
-using Character = DungeonTyper.Common.Models.Character;
 
 namespace DungeonTyper.Logic.Handlers
 {
@@ -98,7 +94,8 @@ namespace DungeonTyper.Logic.Handlers
                 ReInstantiateCombat();
                 if (CheckInputCaseInsensitive(_abilityDataAccess.GetAllCharacter_Abilities(_httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").Character.CharacterId).Select(a => a.AbilityName).ToList()))
                 {
-                    IAbility ability = _abilityDataAccess.GetAbilityByName(_input);
+                    IAbilityCommon dataAbility = _abilityDataAccess.GetAbilityByName(_input);
+                    IAbility ability = new Ability();
                     ICharacter character = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").Character;
 
                     string attackOutput = character.Attack(ability);

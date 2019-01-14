@@ -1,6 +1,6 @@
 ﻿namespace DungeonTyper.Common.Models
 {
-    public interface IAbility
+    public interface IAbilityCommon
     {
         string AbilityDescription { get;  }
         string AbilityName { get;  }

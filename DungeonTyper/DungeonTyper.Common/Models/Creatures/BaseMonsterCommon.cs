@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DungeonTyper.Common.Models
 {
-    abstract class BaseMonster : ICreature
+    abstract class BaseMonsterCommon : ICreatureCommon
     {
         public abstract string Name { get; }
         public abstract int HitPoints { get; }

@@ -2,9 +2,9 @@
 
 namespace DungeonTyper.Common.Models
 {
-    public interface ICharacterClass
+    public interface ICharacterClassCommon
     {
-        List<IAbility> CharacterClassAbilities { get; set; }
+        List<IAbilityCommon> CharacterClassAbilities { get; set; }
         string ClassName { get; set; }
     }
 }

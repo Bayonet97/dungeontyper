@@ -15,7 +15,6 @@ namespace DungeonTyper.Web.Controllers
     {
         // TO DO: SESSION MANAGEMENT
         private readonly IOutputHandler _outputHandler;
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly GameSession _gameSession;
         private readonly IProgressLoader _gameLoader;
         private readonly IInputHandler _inputHandler;
@@ -25,11 +24,9 @@ namespace DungeonTyper.Web.Controllers
             GameSession gameSession,
             IProgressLoader gameLoader,
             IInputHandler inputHandler,
-            IOutputHandler outputHandler,
-            IHttpContextAccessor httpContextAccessor)
+            IOutputHandler outputHandler)
         {
             _outputHandler = outputHandler;
-            _httpContextAccessor = httpContextAccessor;
             _gameSession = gameSession;
             _gameLoader = gameLoader;
             _inputHandler = inputHandler;

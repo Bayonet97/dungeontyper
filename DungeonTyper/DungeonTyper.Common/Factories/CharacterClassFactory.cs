@@ -6,11 +6,11 @@ using System.Text;
 
 namespace DungeonTyper.Common.Factories
 {
-    public class CharacterClassFactory : IFactory<ICharacterClass>
+    public class CharacterClassFactory : IFactory<ICharacterClassCommon>
     {
-        public ICharacterClass Create()
+        public ICharacterClassCommon Create()
         {
-            return new CharacterClass();
+            return new CharacterClassCommon();
         }
 
     }

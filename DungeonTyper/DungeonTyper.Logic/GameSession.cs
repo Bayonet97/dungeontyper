@@ -1,11 +1,12 @@
-﻿using DungeonTyper.Common.Models;
+﻿using DungeonTyper.Logic.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.Serialization;
-namespace DungeonTyper.Common
+
+namespace DungeonTyper.Logic
 {
     public enum GameState
     {

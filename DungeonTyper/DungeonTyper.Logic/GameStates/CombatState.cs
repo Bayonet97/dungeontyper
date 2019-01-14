@@ -4,7 +4,7 @@ using DungeonTyper.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ICharacter = DungeonTyper.Common.Models.ICharacter;
+using ICharacterCommon = DungeonTyper.Common.Models.ICharacterCommon;
 using ICreature = DungeonTyper.Logic.Models.ICreature;
 
 namespace DungeonTyper.Logic.GameStates
@@ -12,7 +12,7 @@ namespace DungeonTyper.Logic.GameStates
     public class CombatState : ICombatState
     {
         private readonly IOutputHandler _outputHandler;
-        private ICharacter _character;
+        private ICharacterCommon _character;
         private ICreature _creature;
 
         public CombatState(IOutputHandler outputHandler)
@@ -20,12 +20,12 @@ namespace DungeonTyper.Logic.GameStates
             _outputHandler = outputHandler;
         }
         // TO BE DELETED WHEN STORED IN SESSION.
-        public void Reinstantiate(ICharacter character, ICreature enemy)
+        public void Reinstantiate(ICharacterCommon character, ICreature enemy)
         {
             _character = character;
             _creature = enemy;
         }
-        public void StartBattle(ICharacter character, ICreature enemy)
+        public void StartBattle(ICharacterCommon character, ICreature enemy)
         {
             _character = character;
             _creature = enemy;

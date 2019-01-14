@@ -4,10 +4,10 @@ using System.Text;
 
 namespace DungeonTyper.Common.Models
 {
-    public class CharacterClass : ICharacterClass
+    public class CharacterClassCommon : ICharacterClassCommon
     {
         public string ClassName { get; set; }
-        public List<IAbility> CharacterClassAbilities { get; set; }
+        public List<IAbilityCommon> CharacterClassAbilities { get; set; }
 
         // Create class for each characterclass in the game.
     }

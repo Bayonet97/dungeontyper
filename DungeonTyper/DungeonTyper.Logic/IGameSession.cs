@@ -1,6 +1,6 @@
-﻿using DungeonTyper.Common.Models;
+﻿using DungeonTyper.Logic.Models;
 
-namespace DungeonTyper.Common
+namespace DungeonTyper.Logic
 {
     public interface IGameSession
     {

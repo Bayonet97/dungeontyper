@@ -15,7 +15,7 @@ namespace DungeonTyper.DAL
 {
     public class CharacterClassDataAccess : ICharacterClassDataAccess
     { 
-        private readonly IFactory<ICharacterClass> _characterClassFactory = new CharacterClassFactory();
+        private readonly IFactory<ICharacterClassCommon> _characterClassFactory = new CharacterClassFactory();
         private readonly IFactory<SqlConnection> _connectionFactory;
 
         public CharacterClassDataAccess(IFactory<SqlConnection> connectionFactory)
@@ -23,11 +23,11 @@ namespace DungeonTyper.DAL
            _connectionFactory = connectionFactory;
         }
 
-        public ICharacterClass GetCharacterClassByName(string characterClass)
+        public ICharacterClassCommon GetCharacterClassByName(string characterClass)
         {
             //var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
 
-            ICharacterClass chosenClass = _characterClassFactory.Create();
+            ICharacterClassCommon chosenClass = _characterClassFactory.Create();
 
             using (SqlConnection cnn = _connectionFactory.Create())
             {
@@ -53,11 +53,11 @@ namespace DungeonTyper.DAL
         }
 
 
-        public CharacterClass GetCharacterClassById(int characterClassId)
+        public CharacterClassCommon GetCharacterClassById(int characterClassId)
         {
             //var connectionString = _configuration.GetConnectionString("FontysDataBase"); //notice the structure of this string
 
-            CharacterClass chosenClass = new CharacterClass();
+            CharacterClassCommon chosenClass = new CharacterClassCommon();
 
             using (SqlConnection cnn = _connectionFactory.Create())
             {
@@ -82,9 +82,9 @@ namespace DungeonTyper.DAL
             }
         }
 
-        public List<ICharacterClass> GetAllCharacterClasses()
+        public List<ICharacterClassCommon> GetAllCharacterClasses()
         {
-            List<ICharacterClass> allCharacterClasses = new List<ICharacterClass>();
+            List<ICharacterClassCommon> allCharacterClasses = new List<ICharacterClassCommon>();
 
             using (SqlConnection cnn = _connectionFactory.Create())
             {
@@ -99,7 +99,7 @@ namespace DungeonTyper.DAL
 
                 while (reader.Read())
                 {
-                    allCharacterClasses.Add(new CharacterClass() { ClassName = reader["ClassName"].ToString() });
+                    allCharacterClasses.Add(new CharacterClassCommon() { ClassName = reader["ClassName"].ToString() });
                 }
                 cnn.Close();
 

@@ -7,9 +7,9 @@ namespace DungeonTyper.Logic.Builders
 {
     class SkeletonBuilder : ISkeletonBuilder
     {
-        private ICreature _creature;
+        private ICreatureCommon _creature;
 
-        public ICreature GetCreature()
+        public ICreatureCommon GetCreature()
         {
             return _creature;
         }

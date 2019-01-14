@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DungeonTyper.Common.Models
 {
-    public interface ICreature
+    public interface ICreatureCommon
     {
         string Name { get; }
         int HitPoints { get; }

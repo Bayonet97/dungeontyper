@@ -2,17 +2,17 @@
 
 namespace DungeonTyper.Common.Models
 {
-    public interface ICharacter : ICreature
+    public interface ICharacterCommon : ICreatureCommon
     {
         int CharacterId { get; }
-        CharacterClass CharacterClass { get; }
+        CharacterClassCommon CharacterClass { get; }
         int Constitution { get; }
         int Strength { get; }
         int Dexterity { get; }
         int Intelligence { get; }
         void OpenInventory();
         void EquipItem(IItem item);
-        string Attack(IAbility ability);
-        void SetCharacterClass(CharacterClass characterClass);
+        string Attack(IAbilityCommon ability);
+        void SetCharacterClass(CharacterClassCommon characterClass);
     }
 }

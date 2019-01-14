@@ -4,24 +4,24 @@ using System.Text;
 
 namespace DungeonTyper.Common.Models
 {
-    public class Character : ICharacter
+    public class CharacterCommon : ICharacterCommon
     {
         public int CharacterId { get; private set; }
         public string Name { get; private set; }
         public int HitPoints { get; private set; }
-        public CharacterClass CharacterClass { get; private set; }
+        public CharacterClassCommon CharacterClass { get; private set; }
         public int Constitution { get; private set; }
         public int Strength { get; private set; }
         public int Dexterity { get; private set; }
         public int Intelligence { get; private set; }
 
-        public Character(int characterId, string name, CharacterClass characterClass)
+        public CharacterCommon(int characterId, string name, CharacterClassCommon characterClass)
         {
             CharacterId = characterId;
             Name = name;
             CharacterClass = characterClass;
         }
-        public string Attack(IAbility ability)
+        public string Attack(IAbilityCommon ability)
         {
             string descriptiontext = GetAbilityCombatDescription(ability.AbilityName);
 
@@ -73,7 +73,7 @@ namespace DungeonTyper.Common.Models
             throw new NotImplementedException();
         }
 
-        public void SetCharacterClass(CharacterClass characterClass)
+        public void SetCharacterClass(CharacterClassCommon characterClass)
         {
             CharacterClass = characterClass;
         }
