@@ -95,7 +95,7 @@ namespace DungeonTyper.Logic.Handlers
                 if (CheckInputCaseInsensitive(_abilityDataAccess.GetAllCharacter_Abilities(_httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").Character.CharacterId).Select(a => a.AbilityName).ToList()))
                 {
                     IAbilityCommon dataAbility = _abilityDataAccess.GetAbilityByName(_input);
-                    IAbility ability = new Ability();
+                    IAbility ability = new Ability() { AbilityName = dataAbility.AbilityName, Description = dataAbility.AbilityDescription };
                     ICharacter character = _httpContextAccessor.HttpContext.Session.GetObject<GameSession>("GameSession").Character;
 
                     string attackOutput = character.Attack(ability);
